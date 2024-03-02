@@ -3,8 +3,8 @@ const app = express();
 const cors = require("cors");
 
 const corsOptions = {
-    origin: 'http://localhost:3000', // Directly specify the origin
-    credentials: true, // Allows cookies / credentials to be sent
+    origin: 'http://localhost:3000',
+    credentials: true,
  };
 
 app.use(cors(corsOptions));
@@ -19,6 +19,7 @@ app.use("/home", require("../server/routes/home"));
 app.use("/addItem", require("../server/routes/addItem"));
 app.use("/myList", require("../server/routes/myList"));
 app.use("/messages", require("../server/routes/messages"));
+app.use("/search", require("../server/routes/search"));
 app.use("/", require("../server/routes/home"));
 
 

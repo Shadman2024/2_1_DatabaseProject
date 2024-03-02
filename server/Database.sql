@@ -22,25 +22,6 @@ CREATE TABLE users (
 );
 
 
--- TRIGGER FOR INSERTING
-
-CREATE OR REPLACE FUNCTION hash_user_password()
-RETURNS TRIGGER AS $$
-BEGIN
-    IF NEW.password_hash !~ '^\$2[ayb]\$.{56}$' THEN
-        NEW.password_hash := crypt(NEW.password_hash, gen_salt('bf'));
-    END IF;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-
-
-CREATE TRIGGER trigger_hash_password
-BEFORE INSERT ON users
-FOR EACH ROW EXECUTE FUNCTION hash_user_password();
-SELECT setval('users_user_id_seq', COALESCE((SELECT MAX(user_id) FROM users), 1), false);
-
 
 
 
@@ -162,10 +143,8 @@ CREATE TABLE reviews(
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (item_id) REFERENCES items(item_id)
 );
--- Create an ENUM type for order status
 CREATE TYPE order_status AS ENUM ('placed', 'confirmed', 'shipped', 'delivered', 'cancelled');
 
--- Modify the orders table definition to use this ENUM
 CREATE TABLE orders (
     order_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id),      

@@ -1,29 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory,Link } from 'react-router-dom';
 import styles from './nav.module.css';
 
 
 import logo from './logo.png'
 const NavBar = () => {
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
     return (
         <div className={styles.cont} style={{  }}>
             <nav className={styles.navbar}>
                 <Link className={styles.navbar_brand} to="/Home">
                     <img src={logo} alt="LOGO" height="50"></img>
                 </Link>
-                <div class={styles.search_bar_container}>
-                        <select class={styles.dropdown}>
-                            <option value="option1">Search In</option>
-                            <option value="option1">Products</option>
-                            <option value="option2">Category</option>
-                            <option value="option3">OPTION 3</option>
-                            <span>Mouse over me</span>
-                        </select>
-                        <input type="text" class={styles.search_input} placeholder="Search...">
-
-                        </input>
-                        <button type="submit" class={styles.search_button}>SEARCH</button>
-                    </div>
+                <form 
+                    className={styles.search_bar_container} 
+                    action={`/search?query=${encodeURIComponent(searchQuery)}`} 
+                    method="GET"
+                >
+                    <input 
+                        type="text" 
+                        className={styles.search_input} 
+                        placeholder="Search..."
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                        name="query"
+                    />
+                    <button 
+                        type="submit" 
+                        className={styles.search_button_}
+                    >SEARCH</button>
+                </form>
                 <div className={styles.collapse} >
                     <ul className={styles.navbar}>
                         <li className="nav_item">

@@ -19,6 +19,7 @@ import Orders from './orders/orders';
 import AddItems from './addItem/addItem';
 import MyList from './myList/myList';
 import Messaging from './messaging/messaging';
+import SearchResults from './seach/search';
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -48,6 +49,7 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/addItems" element={<AddItems/>} />
         <Route path="/" element={<Home />} />
+        <Route path="/search" element={<SearchResults />} />
         <Route path="/item/:itemId" element={<Bigitem />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>

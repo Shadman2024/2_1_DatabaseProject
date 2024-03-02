@@ -3,7 +3,6 @@ import styles from '../Item/_mini_miniItemPage.module.css';
 
 
 const _mini_miniItemPage = ({ item_id, image, name, price, discount }) => {
-    console.log("image ",image)
     return (
         <div className={styles.item}>
             <img src={image} alt={name} className={styles.item_image} />

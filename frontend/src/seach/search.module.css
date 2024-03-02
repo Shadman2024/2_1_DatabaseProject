@@ -1,0 +1,84 @@
+.container {
+  display: flex;
+  box-shadow: 0 15px 25px rgba(0,0,0,.2);
+  margin-left: 250px;
+  margin-right: 250px;
+  padding: 10px;
+}
+
+.leftContainer{
+  width: 20%;
+  padding-right: 10px;
+  padding-top: 100px;
+  /* background-color: blue; */
+}
+.rightContainer{
+  width: 80%;
+  /* background-color: white; */
+  border-left: 10px solid white;
+  padding-left: 3%;
+  display: flex;
+  flex-direction: column;
+}
+
+.select {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  /* border-radius: 1rem; */
+  background-color: rgba(0,152,155,.1);
+}
+
+.title {
+  margin-bottom: 10px;
+  font-size: 30px;
+  color: rgb(255, 255, 255);
+  font-weight: bolder;
+  padding-left: 20px;
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+  margin-top: 0px;
+  letter-spacing: 5px;
+}
+.sortSelect {
+  display: block;
+  width: 30%;
+  margin-bottom: 10px;
+  padding: 8px;
+  margin-left: 40%;
+  background-color: rgba(0,152,155,.1);
+}
+
+
+.resultsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.topcontainer{
+  padding-top: 3%;
+  display: flex;
+  width: 100%;
+  /* background-color: black; */
+}
+.itemcontainer {
+  display: flex;
+  flex-wrap: wrap; /* This allows items to wrap to the next line */
+  gap: 20px; /* Adjust the gap between items as necessary */
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-top: 50px;
+  overflow-x: hidden; /* Updated to hide horizontal scrollbar */
+  padding-bottom: 100px;
+}
+
+.item {
+  flex: 1; /* This makes each item flexible */
+  min-width: 250px; /* Adjust min-width as necessary to control when wrapping occurs */
+  max-width: 300px; /* Adjust max-width as necessary for consistency */
+  display: flex;
+  flex-direction: column; /* Stack item contents vertically */
+  align-items: center; /* Center-align the item content */
+  padding: 5px;
+  /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); Optional: adds shadow for better separation */
+}

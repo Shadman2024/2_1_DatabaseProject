@@ -1,14 +1,14 @@
 
 .wrapper {
     display: flex;
-    position: relative; /* Add this to position your arrows absolutely relative to this container */
+    position: relative; 
     margin-left: 200px;
     margin-right: 100px;
     padding-top: 50px;
     overflow-x: auto;
-    margin-left: 50px; /* Adjust as needed, make space for left arrow */
-    margin-right: 50px; /* Adjust as needed, make space for right arrow */
-    flex-grow: 1; /* Ensures it takes the available space */
+    margin-left: 50px; 
+    margin-right: 50px; 
+    flex-grow: 1; 
 }
 
 .wrapper .item {

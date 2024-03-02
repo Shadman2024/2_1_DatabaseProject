@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './orders.module.css'; // Make sure the path is correct
+import styles from './orders.module.css'; 
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
