@@ -1,0 +1,16 @@
+._hero{
+
+}
+.home{
+  padding-left: 250px;
+  padding-right: 250px;
+}
+.trendingNow{
+background: #6B0756;
+background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+  padding: 20px;
+  /* border: 2px solid #3F0442; */
+  border-radius: 2rem;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}

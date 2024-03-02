@@ -1,0 +1,38 @@
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style for the navigation bar */
+.category-navbar {
+    display: flex;
+    justify-content: space-around; /* Distribute space evenly between the items */
+    align-items: center; /* Center items vertically */
+    background-color: #333; /* Dark background for the navbar */
+    padding: 10px 0; /* Padding around the navbar */
+    border-top:3px solid #ffafcc;
+    border-bottom:3px solid #ffafcc;
+}
+
+/* Style for each category item */
+.category-item {
+    color: rgb(36, 36, 36); /* Text color */
+    text-decoration: none; /* Remove underline from links */
+    padding: 0px 0px; /* Padding inside each category item */
+    border-radius: 5px; /* Rounded corners */
+    font-size: large;
+    font-weight:bold;
+    transition: background-color 0.3s; /* Smooth transition for background color change */
+    /* background-color: #d4d4d4; */
+    
+}
+
+/* Change background color on hover */
+.category-item:hover {
+    color: #005a47;
+    border: 3px;
+    font-weight: bolder;
+    /* background-color: #1f0017; */
+}

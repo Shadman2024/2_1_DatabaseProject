@@ -1,0 +1,135 @@
+.container {
+    display: flex;
+    /* justify-content: center; */
+    margin-top: 20px;
+    background-color: #cce4f1;
+    padding: 10px;
+    padding-left: 100px;
+    border-radius: 2rem;
+}
+
+.item {
+    border: 1px solid #ddd00;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    max-width: 900px;
+}
+
+.mainItem {
+    display: flex;
+    width: 100%;
+}
+
+.image img {
+    width: 600px;
+    height: auto;
+    border-right: 1px solid #ddd;
+}
+
+.details {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.details h2 {
+    margin-top: 0;
+}
+
+.sideItems {
+    /* Styles for side items */
+}
+
+button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+/* .closeButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+} */
+
+.container {
+    position: relative; /* Ensure the close button's absolute positioning is relative to this container */
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    padding: 5px 10px; /* Gives some space around the X for easier clicking */
+    cursor: pointer;
+    font-weight: bold;
+    background-color: transparent; /* Optional: Makes the background of the X transparent */
+    border: none; /* Removes any default button styling if you're using a button element */
+    font-size: 24px; /* Adjust the size of the X as needed */
+    color: #000; /* Adjust the color as needed */
+    z-index: 10; /* Ensures the button is clickable above all other content */
+}
+.animated_button {
+    position: relative;
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    font-size: 16px;
+    background-color: inherit;
+    border-radius: 100px;
+    font-weight: 600;
+    color: #42003f;
+    box-shadow: 0 0 0 2px #700258;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    /* font-weight: bold; */
+    letter-spacing: 1px;
+    /* padding-bottom: 30px; */
+  }
+  
+  .animated_button span:last-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: #251122;
+    /* color: #000; */
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 1.8s cubic-bezier(0.23, 2.6, 0.320, 1);
+  }
+  
+  .animated_button span:first-child {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .animated_button:hover {
+    box-shadow: 0 0 0 3px #520047;
+    color: #ffffff;
+    background-color: #3f002a;
+  }
+  
+  .animated_button:active {
+    scale: 0.95;
+  }
+  
+  .animated_button:hover span:last-child {
+    width: 150px;
+    height: 150px;
+    opacity: 1;
+  }

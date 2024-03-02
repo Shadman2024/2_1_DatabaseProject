@@ -1,0 +1,153 @@
+.hero {
+    height: 10vh;
+    /* Layer the gradient over the image */
+    background-image: linear-gradient(90deg, #000000, #00000022 80%), url('hero2image.jpg');
+    background-size: cover; /* Cover the entire area */
+    background-position: center; /* Center the image */
+    display: flex;
+    padding-top: 20%;
+    padding-bottom: 20%;
+    /* If you want the image to not scroll with the page, use the following line */
+    background-attachment: fixed;
+}
+
+
+.hero_left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding-left: 180px;
+    line-height: 1.1;
+}
+
+.hero_left h2 {
+    color: rgb(255, 255, 255);
+    font-size: 26px; /* Corrected the space issue between '26' and 'px' */
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); /* Example shadow: horizontal, vertical, blur, color */
+}
+
+.hero_left p {
+    color: rgb(255, 255, 255);
+    font-size: 100px;
+    font-weight: 600;
+    text-shadow: 3px 9px 9px rgba(0, 0, 0, 0.9); /* Slightly larger shadow for larger text */
+}
+
+
+.hero_hand_icon {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* .hero-latest-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 310px;
+    height: 70px;
+    background: #3d1a3f;
+    color: white;
+    font-size: 22px;
+    font-weight: 500;
+
+} */
+
+.hero_right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+button.learn_more {
+    width: 12rem;
+    height: auto;
+}
+
+button.learn_more .circle {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: relative;
+    display: block;
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+    background: #ffffff;
+    border-radius: 1.625rem;
+}
+
+button.learn_more .circle .icon {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #ffffff;
+}
+
+button.learn_more .circle .icon {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    left: 0.625rem;
+    width: 1.125rem;
+    height: 0.125rem;
+    background: none;
+}
+
+button.learn_more .circle .icon::before {
+    position: absolute;
+    content: "";
+    top: -0.29rem;
+    right: 0.0625rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-top: 0.125rem solid #020202;
+    border-right: 0.125rem solid #000000;
+    transform: rotate(45deg);
+}
+
+button.learn_more .button_text {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.75rem 0;
+    margin: 0 0 0 1.85rem;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+button:hover .circle {
+    width: 100%;
+}
+
+button:hover .circle .icon{
+    background: #000000;
+    transform: translate(1rem, 0);
+}
+
+button:hover .button_text {
+    color: #000000;
+}

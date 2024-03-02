@@ -1,0 +1,39 @@
+.item {
+    width: 250px; 
+    /* border: 1px solid #ddd; A light border */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: Adds a subtle shadow */
+    /* margin: 10px; */
+    text-align: center; /* Aligns the text to the center */
+    background-color: #cce4f1;
+    height: 420px;
+    overflow-y:hidden;
+}
+.item:hover{
+    background-color: #ffdab9;
+    cursor: pointer;
+}
+.item_image {
+    width: 250px; /* Makes the image fill the container */
+    /* height: auto; Keeps the image aspect ratio */
+    height: 250px;
+}
+
+.item_details {
+    padding: 10px;
+}
+
+.item_name {
+    margin: 10px 0 5px 0;
+    color: #333; /* Darker text for the name */
+}
+
+.item_price, .item_discount, .item_review {
+    margin: 5px 0;
+    color: #666; /* Lighter text for details */
+}
+
+.item_review {
+    font-weight: bold; /* Makes review stars bolder */
+}
+
+  

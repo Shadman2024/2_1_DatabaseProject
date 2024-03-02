@@ -1,0 +1,60 @@
+/* menu.module.css */
+.container {
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-top: 50px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    /* height: 1000px; */
+    /* background-color: aliceblue; */
+    /* Aligns items vertically */
+    /* align-items: center; */
+    /* Centers items horizontally within the container */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.link {
+    text-decoration: none;
+    /* Removes underline from links */
+    color: inherit;
+    /* Inherits text color from parent elements */
+    margin: 1px;
+    /* Adds margin around each link for spacing */
+}
+
+.button {
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+    /* Green background */
+    color: white;
+    /* White text color */
+    /* padding: 10px 20px; */
+    /* Padding inside the button */
+    border: none;
+    /* Removes border */
+    cursor: pointer;
+    /* Changes cursor to pointer on hover */
+    border-radius: 5px;
+    /* Rounds the corners of the button */
+    font-size: 1em;
+    /* Sets font size */
+    transition: background-color 0.3s, transform 0.2s;
+    /* Smooth transition for background color and transform */
+    /* padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px; */
+    width: 300px; /* Set a specific width */
+    height: 80px; /* Set a specific height */
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    /* padding-left: 200px; */
+    margin-top: 0px;
+    letter-spacing: 5px;
+}
+
+.button:hover {
+    /* Darker shade of green on hover */
+    transform: scale(1.05);
+    /* Slightly increases the size */
+}

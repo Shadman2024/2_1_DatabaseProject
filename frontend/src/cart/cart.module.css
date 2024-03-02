@@ -1,0 +1,186 @@
+.cart_container {
+  /* width: 80%; */
+  margin-left: 250px;
+  margin-top: 40px;
+  margin-right: 250px;
+  padding: 20px;
+  /* background-color: #f9f9f9; */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.cart_table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.cart_table th,
+.cart_table td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  color: #0e0e0e;
+  font-size: 25px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 0px;
+  padding-top: 10px;
+  font-weight:lighter;
+}
+
+.cart_table th {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  color: rgb(31, 31, 31);
+  font-size: 30px;
+  font-weight:normal;
+}
+
+
+
+.total_row th {
+  text-align: right;
+}
+
+.total_row td {
+  font-weight: bold;
+}
+
+input[type="number"] {
+  width: 60px;
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  color: black;
+}
+
+.redbutton{
+  background-color: #e20b0b;
+}
+.button{
+  background-color: #edf6ff;
+  color: #0e0e0e;
+  margin-left: 10px;;
+  margin-right: 10px;;
+}
+
+
+.cart_table input[type="number"] {
+  text-align: center;
+  margin: 0 5px;
+  width: 50px; /* Adjust based on your design */
+}
+
+.cart_table button {
+  /* background-color: #bd2f2f00; */
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.cart_table button:hover {
+  background-color: #e2e2e2;
+}
+.pm{
+  color: #0e0e0e;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.pmcontainer{
+  display: flex;
+  align-items: center; /* Aligns items vertically center */
+  justify-content: center; /* Aligns items horizontally center */
+}
+.pmcontainer {
+  display: flex;
+  align-items: center; /* Aligns items vertically center */
+  justify-content: center; /* Aligns items horizontally center */
+}
+
+.pm {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin: 0 5px; /* Adds space between the buttons and the input */
+}
+
+.pm:hover {
+  background-color: #e2e2e2;
+}
+
+input[type="number"] {
+  width: 60px; /* Adjust based on your design */
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+  margin: 0 5px; /* Ensures there's space around the input */
+}
+.title {
+  /* Add styles for your title here */
+  margin-bottom: 10px;
+  /* Example space between title and wrapper */
+  font-size: 30px;
+  ;
+  color: rgb(255, 255, 255);
+  font-weight: bolder;
+  padding-left: 200px;
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+  margin-top: 0px;
+  letter-spacing: 5px;
+}
+.animated_button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+  border-radius: 100px;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  box-shadow: 0 0 0 2px #ffffff00;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  text-align: center;
+  font-size: 1.2rem;
+  /* font-weight: bold; */
+  letter-spacing: 1px;
+  /* padding-bottom: 30px; */
+}
+
+.animated_button span:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: rgb(71, 0, 73);
+  /* color: #000; */
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.animated_button span:first-child {
+  position: relative;
+  z-index: 1;
+}
+
+.animated_button:hover {
+  box-shadow: 0 0 0 3px #ffffff;
+  color: #2F0332;
+}
+
+.animated_button:active {
+  scale: 0.95;
+}
+
+.animated_button:hover span:last-child {
+  width: 150px;
+  height: 150px;
+  opacity: 1;
+}

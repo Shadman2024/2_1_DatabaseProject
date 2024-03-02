@@ -1,0 +1,138 @@
+.wrapper {
+    display: flex;
+    /* position: relative;  */
+    margin-left: 200px;
+    margin-right: 100px;
+    /* padding-top: 100px; */
+    overflow-x: hidden;
+    margin-left: 50px; /* Adjust as needed, make space for left arrow */
+    margin-right: 50px; /* Adjust as needed, make space for right arrow */
+    flex-grow: 1; /* Ensures it takes the available space */
+    
+}
+.cont{
+    display:contents;
+}
+
+.wrapper .item {
+    /* padding: 10px; */
+    /* padding-bottom: 20px; */
+    margin: 5px;
+
+    /* Set width and height to the same value */
+    /* width: 200px;     */
+    height: 100px; 
+    display: block;
+    /* text-align: center; */
+    border-radius: 0.7rem;
+    background-color: antiquewhite;
+    
+
+    /* Optional: if you want the total size including padding to be square */
+    /* box-sizing: border-box; */
+}
+
+.item {
+    /* Other styles remain unchanged */
+    text-align: left; /* Aligns text to the left */
+    display: block;
+    align-items: start; /* Align items to the start of the flex container */
+    justify-content: start; /* Align content to the start (left) of the container */
+}
+
+.wrapper::-webkit-scrollbar{
+    width: 0;
+    /* color: blueviolet; */
+    /* background-color: rgb(228, 189, 221); */
+}
+.wrapper .item:hover{
+    /* rgb(216, 207, 195); */
+    background-color: #ffdab9;
+    /* background-color: rgb(228, 189, 221); */
+    cursor: pointer;
+}
+
+
+.topCategories {
+    display: flex;
+    /* flex-direction: column;  */
+    /* align-items: center;   */
+    /* justify-content: center;  */
+    /* padding-top: 40px; */
+    margin-bottom: 30px;
+    /* padding-left: 30px; */
+    /* flex-direction: column;  */
+}
+
+.title {
+    /* Add styles for your title here */
+    /* margin-bottom: 10px; Example space between title and wrapper */
+    font-size: 30px;;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    /* padding-left: 200px; */
+    background: #94297E;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+    margin-top: 0px;
+    letter-spacing: 5px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-radius: 0.5rem;
+    padding: 10px;
+}
+
+/* /////////////////// */
+.arrow {
+    cursor: pointer;
+    position:fixed;
+    /* top: 50%; */
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.left_arrow {
+    margin-top: 0px;
+    margin-left: 2px;
+    left: 0;
+    border-radius: 2rem;
+    /* border-radius: 3px 0 0 3px; */
+    background: #94297E;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+}
+
+.right_arrow {
+    margin-top: 00px;
+    right: 0;
+    border-radius: 2rem;
+    background: #94297E;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+}
+.wrapperContainer {
+    position: relative; 
+    display: block;
+    align-items: center;
+    overflow: hidden;
+
+    
+}
+
+
+.arrow {
+    cursor: pointer;
+    position: absolute; /* This positions the arrow relative to the wrapperContainer */
+    top: 50%;
+    transform: translateY(-50%); /* This centers the arrow vertically */
+    z-index: 1; /* Ensures arrows are above other elements */
+    /* Other styles... */
+}

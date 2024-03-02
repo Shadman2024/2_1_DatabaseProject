@@ -1,0 +1,110 @@
+.wrapperContainer {
+    /* background-color: #94297E; */
+    /* box-shadow: 0px 4px 4px #8d5288; Example shadow */
+    padding-left: 50px;
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    /* position: relative; Add this to position your arrows absolutely relative to this container */
+    /* margin-left: 200px; */
+    /* margin-right: 100px; */
+    padding-top: 50px;
+    /* overflow-x: auto; */
+    flex-grow: 1;
+}
+
+.wrapper .item {
+    padding: 10px;
+    /* padding-top: 130px; */
+    /* padding-bottom: 20px; */
+    /* margin: 1px; */
+
+    /* Set width and height to the same value */
+    /* width: 400px; for example */
+    /* height: 500px; same as width to make it square */
+
+    text-align: center;
+    border-radius: 1.7rem;
+    /* background-color: antiquewhite; */
+
+    /* Optional: if you want the total size including padding to be square */
+    /* box-sizing: border-box; */
+}
+
+.wrapper::-webkit-scrollbar {
+    width: 0;
+    /* color: blueviolet; */
+    /* background-color: rgb(228, 189, 221); */
+}
+
+
+
+.topCategories {
+    display: flex;
+    flex-direction: column;
+    /* Aligns children (title and wrapper) in a column */
+    /* align-items: center;   */
+    justify-content: center;
+    /* padding-top: 40px; */
+    /* margin-bottom: 70px; */
+    /* padding-left: 30px; */
+}
+
+.title {
+    /* Add styles for your title here */
+    margin-bottom: 10px;
+    /* Example space between title and wrapper */
+    font-size: 30px;
+    ;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    padding-left: 200px;
+    background: #94297E;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+    margin-top: 0px;
+    letter-spacing: 5px;
+}
+
+/* /////////////////// */
+.arrow {
+    cursor: pointer;
+    position: fixed;
+    /* top: 50%; */
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+.wrapperContainer {
+    position: relative;
+    /* Add this */
+    display: flex;
+    align-items: center;
+    /* Centers the arrows vertically */
+}
+
+
+.arrow {
+    cursor: pointer;
+    position: absolute;
+    /* This positions the arrow relative to the wrapperContainer */
+    top: 50%;
+    transform: translateY(-50%);
+    /* This centers the arrow vertically */
+    z-index: 1;
+    /* Ensures arrows are above other elements */
+    /* Other styles... */
+}

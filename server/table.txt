@@ -1,0 +1,15 @@
+users.........
+user_phone_number
+items
+categories
+subcategories
+images
+discounts
+item_discounts
+messages
+report
+reviews
+orders
+order_details
+shipping_info
+payments
