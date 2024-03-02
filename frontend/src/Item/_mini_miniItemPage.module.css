@@ -31,6 +31,12 @@
     margin: 5px 0;
     color: #666; /* Lighter text for details */
 }
+.item_price{
+    font-size: 20px;
+    font-weight: bolder;
+    color:rgb(0, 0, 0);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
 .item_review {
     font-weight: bold; /* Makes review stars bolder */

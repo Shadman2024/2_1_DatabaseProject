@@ -14,3 +14,5 @@ number er css thik korte hobe
 order history
 
 auto refresh off
+
+search history

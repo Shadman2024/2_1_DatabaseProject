@@ -8,7 +8,7 @@ const _mini_miniItemPage = ({ item_id, image, name, price, discount }) => {
             <img src={image} alt={name} className={styles.item_image} />
             <div className={styles.item_details}>
                 <h2 className={styles.item_name}>{name}</h2>
-                <p className={styles.item_price}>Price: ${price}</p>
+                <p className={styles.item_price}>&#2547; {price}</p>
                 <p className={styles.item_discount}>Discount: {discount}%</p>
             </div>
         </div>

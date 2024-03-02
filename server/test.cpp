@@ -5,8 +5,8 @@ using namespace std;
  
 int main()
 {
-    int i=12;
-    for(;i<30;i++){
-        cout<<"update items set image = '' where item_id ="<<i<<endl;
+    int i=30;
+    for(;i<120;i++){
+        cout<<"update items set image = '' where item_id ="<<i<<";"<<endl;
     }
 }
