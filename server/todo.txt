@@ -16,3 +16,7 @@ order history
 auto refresh off
 
 search history
+
+chart
+
+suggested item based on search hjsitpory
