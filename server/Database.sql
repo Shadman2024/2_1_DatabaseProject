@@ -136,6 +136,7 @@ CREATE TABLE reviews(
     user_id INT NOT NULL,
     item_id INT NOT NULL,
     content TEXT,
+    star_rating INT CHECK (star_rating >= 1 AND star_rating <= 5), 
     upvotes INT DEFAULT 0,
     downvotes INT DEFAULT 0,
     date_posted TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -143,6 +144,7 @@ CREATE TABLE reviews(
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (item_id) REFERENCES items(item_id)
 );
+
 CREATE TYPE order_status AS ENUM ('placed', 'confirmed', 'shipped', 'delivered', 'cancelled');
 
 CREATE TABLE orders (

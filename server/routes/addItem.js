@@ -18,6 +18,59 @@ router.get('/getCategory', async (req, res) => {
         res.status(500).json("server error");
     }
 });
+router.get('/getDetails/:item_id', async (req, res) => {
+    console.log("Request received for item details, Item ID:", req.params.item_id);
+
+    try {
+        const query = await pool.query(
+            `SELECT
+                i.item_id,
+                i.name AS item_name,
+                i.description,
+                i.image,
+                i.price AS old_price,
+                COALESCE(d.discount, 0) AS discount,
+                d.start_date,
+                d.duration,
+                CURRENT_TIMESTAMP,
+                CASE
+                    WHEN d.discount IS NOT NULL AND CURRENT_TIMESTAMP BETWEEN d.start_date AND (d.start_date + INTERVAL '300 day' * d.duration) THEN ROUND(i.price * (1 - d.discount / 100), 2)
+                    ELSE i.price
+                END AS discounted_price,
+                c.name AS category_name,
+                sc.name AS subcategory_name,
+                u.user_id,
+                (u.first_name || ' ' || u.last_name) AS seller_name,
+                u.email,
+                upn.phone_number,
+                ROUND(AVG(r.star_rating)) AS average_rating
+            FROM items i
+            LEFT JOIN item_discounts id ON i.item_id = id.item_id
+            LEFT JOIN discounts d ON id.discount_id = d.discount_id
+            AND CURRENT_TIMESTAMP BETWEEN d.start_date AND (d.start_date + INTERVAL '300 day' * d.duration)
+            JOIN users u ON i.user_id = u.user_id
+            LEFT JOIN user_phone_number upn ON u.user_id = upn.user_id
+            JOIN categories c ON i.category_id = c.category_id
+            JOIN subcategories sc ON i.subcategory_id = sc.subcategory_id
+            LEFT JOIN reviews r ON i.item_id = r.item_id
+            WHERE i.item_id = $1
+            GROUP BY i.item_id, u.user_id, upn.phone_number, c.name, sc.name, d.discount, d.start_date, d.duration
+            `,
+            [req.params.item_id]
+        );
+        if (query.rows.length) {
+            res.json(query.rows[0]);
+        } else {
+            res.status(404).json({ message: 'Item not found' });
+        }
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json("Server error");
+    }
+});
+
+
+
 
 router.get('/getSubcategory/:categoryName', async (req, res) => {
     const { categoryName } = req.params;
