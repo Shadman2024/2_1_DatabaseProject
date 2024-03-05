@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './search.module.css';
 import _mini_miniItemPage from '../Item/_mini_miniItemPage';
+import { jwtDecode } from 'jwt-decode';
+
 function SearchResults() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
@@ -10,10 +12,27 @@ function SearchResults() {
     const [rating, setRating] = useState('');
     const [sort, setSort] = useState('');
     const [results, setResults] = useState([]);
-    const [minPrice, setMinPrice] = useState(2500);
-    const [maxPrice, setMaxPrice] = useState(7500);
+    const [minPrice, setMinPrice] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(10000);
+    const [user, setUser] = useState(null);
     const maxRange = 10000;
     const priceGap = 1000;
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            const decoded = jwtDecode(token);
+            setUser(decoded);
+            console.log(token);
+        }
+    }, []);
+
+
+    useEffect(() => {
+        if (user) {
+            console.log(user);
+        }
+    }, [user]);
 
     const [categories, setCategories] = useState([]);
     const updateProgressBar = () => {
@@ -66,27 +85,29 @@ function SearchResults() {
         fetchCategories();
     }, []);
     useEffect(() => {
-        // Initialize URLSearchParams object
         const params = new URLSearchParams();
-
-        // Append parameters only if they have a value
         if (query) params.append('query', query);
-        if (categoryName) params.append('categoryName', categoryName); // Ensure this is correctly appended
+        if (categoryName) params.append('categoryName', categoryName);
         if (rating) params.append('rating', rating);
         if (sort) params.append('sort', sort);
         if (minPrice) params.append('minPrice', minPrice);
         if (maxPrice) params.append('maxPrice', maxPrice);
-
+        if (user) {
+            params.append('user', user.user);
+        }
         const fetchResults = async () => {
             try {
-                // Construct the fetch URL with parameters
                 const url = `http://localhost:5000/search?${params.toString()}`;
-                const response = await fetch(url);
-
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        token: localStorage.token,
+                        'Content-Type': 'application/json',
+                    }
+                });
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-
                 const data = await response.json();
                 setResults(data);
             } catch (error) {
@@ -95,7 +116,7 @@ function SearchResults() {
         };
 
         fetchResults();
-    }, [query, categoryName,  rating, sort,minPrice, maxPrice]); // Ensure category is listed as a dependency
+    }, [query, categoryName, rating, sort, minPrice, maxPrice, user]);
 
 
     return (

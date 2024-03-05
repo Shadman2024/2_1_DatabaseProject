@@ -11,10 +11,8 @@ router.get('/categories', async (req, res) => {
             FROM categories
             ORDER BY name;
         `;
-        // Execute the query
         const { rows } = await pool.query(sqlQuery);
 
-        // Send back the query results
         res.json(rows);
     } catch (err) {
         console.error('Error executing query', err.stack);
@@ -22,17 +20,15 @@ router.get('/categories', async (req, res) => {
     }
 });
 router.get('/', async (req, res) => {
-    // console.log("Request for search");
     
     
-    const { query, categoryName, minPrice, maxPrice, sort } = req.query;
-    // if (!query) {
-    //     return res.status(400).json({ error: "Search query cannot be null." });
-    // }
+    const { query, categoryName, minPrice, maxPrice, sort,user } = req.query;
     
     console.log("cat ",categoryName);
     console.log("query ",query);
     console.log("sort ",sort);
+    console.log("user ",user);
+
     let sqlQuery = `
         SELECT i.item_id, i.name, i.price, i.image, c.name AS category_name,
                COALESCE(r.rating, 0) AS rating
@@ -90,12 +86,21 @@ router.get('/', async (req, res) => {
 
     try {
         const { rows } = await pool.query(sqlQuery, queryParams);
-        // console.log('rows,', rows);
+        const logSearchQuery = `
+            INSERT INTO search_history (user_id, search_query, category_name, sort_option)
+            VALUES ($1, $2, $3, $4);
+        `;
+        await pool.query(logSearchQuery, [user, query || null, categoryName ||null , sort||null]);
+
+
         res.json(rows);
     } catch (err) {
-        console.error('Error executing query', err.stack);
+        console.error('Error executing query or logging search', err.stack);
         res.status(500).send('Server error');
     }
 });
 
+
 module.exports = router;
+
+
