@@ -21,6 +21,7 @@ app.use("/myList", require("../server/routes/myList"));
 app.use("/messages", require("../server/routes/messages"));
 app.use("/search", require("../server/routes/search"));
 app.use("/", require("../server/routes/home"));
+app.use("/update_profile", require("../server/routes/updateProfile"));
 
 
 
