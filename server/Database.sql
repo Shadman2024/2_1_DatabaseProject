@@ -197,3 +197,13 @@ CREATE TABLE cart (
     FOREIGN KEY (item_id) REFERENCES items(item_id),
     UNIQUE(user_id, item_id) -- Ensures that each item appears only once per user's cart
 );
+
+CREATE TABLE search_history (
+    search_id SERIAL PRIMARY KEY,
+    user_id INT,
+    search_query TEXT,
+    category_name TEXT,
+    sort_option TEXT,
+    search_timestamp TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);

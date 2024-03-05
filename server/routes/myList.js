@@ -9,7 +9,7 @@ router.get('/items', authorization, async (req, res) => {
         const userId = req.user;
         console.log("UserID ", userId);
         
-        // Adjust the query to join with categories, subcategories, and optionally fetch an image
+       
         const query = `
             SELECT 
                 items.item_id,

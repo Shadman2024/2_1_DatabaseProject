@@ -3,10 +3,10 @@ const router = express.Router();
 const pool = require('../db');
 const authorization = require('../middleware/authorization')
 router.get('/contacts/', authorization, async (req, res) => {
-    // console.log("GOT Mssg Signal")
+
     try {
         const  userId  = req.user;
-        // console.log(userId);
+
         const contactsQuery = `
             SELECT DISTINCT users.user_id, users.last_name
             FROM messages
@@ -15,7 +15,7 @@ router.get('/contacts/', authorization, async (req, res) => {
             ORDER BY users.last_name;
         `;
         const contactsResult = await pool.query(contactsQuery, [userId]);
-        // console.log(contactsResult.rows);
+
         res.json(contactsResult.rows);
     } catch (err) {
         console.error(err.message);
@@ -23,12 +23,11 @@ router.get('/contacts/', authorization, async (req, res) => {
     }
 });
 router.get('/conversation/:id', authorization, async (req, res) => {
-    // console.log("GOT CONVERSATION Signal");
+
     try {
         const userId = req.user; 
         const contactId = req.params.id;
-        // console.log(userId);
-        // console.log(contactId);
+
         
         const messagesQuery = `
             SELECT *, 

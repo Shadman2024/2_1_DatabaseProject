@@ -1,15 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../db'); // Assuming pool is your PostgreSQL client from pg module
+const pool = require('../db'); 
 const authorization = require('../middleware/authorization');
 
 router.get('/', authorization, async (req, res) => {
     console.log("Got signal");
     try {
-        // Assuming 'user_id' is obtained from the authorization middleware
+
         const userId = req.user;
 
-        // Query to fetch orders and their details for the logged-in user
         const ordersQuery = `
         SELECT 
         o.order_id,
@@ -40,11 +39,11 @@ router.get('/', authorization, async (req, res) => {
     
         `;
             console.log(userId);
-        // Execute the query
+
         const { rows } = await pool.query(ordersQuery, [userId]);
         console.log("rows", rows);
 
-        // Send the orders back to the client
+
         res.json(rows);
     } catch (err) {
         console.error(err.message);

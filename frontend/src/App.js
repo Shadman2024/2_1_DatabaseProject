@@ -20,6 +20,8 @@ import AddItems from './addItem/addItem';
 import MyList from './myList/myList';
 import Messaging from './messaging/messaging';
 import SearchResults from './seach/search';
+import ItemBig from './itemBig/itemBig';
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -47,6 +49,7 @@ function App() {
         <Route path="/myList" element={isAuthenticated ? <MyList setAuth={setAuth}/> : <Navigate replace to="/login" />} />
         <Route path="/messages" element={isAuthenticated ? <Messaging setAuth={setAuth}/> : <Navigate replace to="/login" />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/itemExpand" element={<ItemBig />} />
         <Route path="/addItems" element={<AddItems/>} />
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<SearchResults />} />

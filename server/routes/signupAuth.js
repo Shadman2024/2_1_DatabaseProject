@@ -15,7 +15,6 @@ router.post('/',validinfo, async (req, res) => {
             const token = jwtGenerator(newUser.rows[0].user_id);
             res.json({token});
         } else {
-            // Handle the case where no user was inserted, if applicable
             res.status(500).send('User could not be created');
         }
     } catch (error) {
