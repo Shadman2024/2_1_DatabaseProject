@@ -25,7 +25,8 @@
     display: block;
     /* text-align: center; */
     border-radius: 0.7rem;
-    background-color: antiquewhite;
+    background-color: #cce3f1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     
 
     /* Optional: if you want the total size including padding to be square */
@@ -47,7 +48,7 @@
 }
 .wrapper .item:hover{
     /* rgb(216, 207, 195); */
-    background-color: #ffdab9;
+    /* background-color: #ffdab9; */
     /* background-color: rgb(228, 189, 221); */
     cursor: pointer;
 }
@@ -71,8 +72,8 @@
     color: rgb(255, 255, 255);
     font-weight: bolder;
     /* padding-left: 200px; */
-    background: #94297E;
-    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,50%) 0.1%, rgba(0,94,120,50%) 94.2% );
     margin-top: 0px;
     letter-spacing: 5px;
     margin-bottom: 0px;
@@ -107,16 +108,15 @@
     left: 0;
     border-radius: 2rem;
     /* border-radius: 3px 0 0 3px; */
-    background: #94297E;
-    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,.5) 0.1%, rgba(0,94,120,.5) 94.2% );
+    
 }
 
 .right_arrow {
     margin-top: 00px;
     right: 0;
     border-radius: 2rem;
-    background: #94297E;
-    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,.5) 0.1%, rgba(0,94,120,.5) 94.2% );
 }
 .wrapperContainer {
     position: relative; 

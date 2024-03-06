@@ -4,18 +4,29 @@
   /* padding-bottom: 20px; */
   
   display: flex;
-  align-items: center; 
+  /* align-items: center;  */
   /* justify-content: center; */
   /* padding-bottom: 20px; */
-  /* background-image: radial-gradient( circle farthest-corner at 92.3% 71.5%,  rgba(83,138,214,1) 0%, rgba(134,231,214,1) 90% ); */
   background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+  /* background-image: radial-gradient( circle farthest-corner at 92.3% 71.5%,  rgba(83,138,214,1) 0%, rgba(134,231,214,1) 90% ); */
+}
+.cont2 {
+  padding-top: 20px;
+  display: flex;
+  background-image: linear-gradient(to top, rgba(0,152,155,0%) 0%,rgba(0,152,155,70%) 30%, rgba(0,152,155,1) 100%);
+}
+.search_button_{
+  display: flex;
+  gap: 20px; 
 }
 
 
 .navbar_brand {
   margin-left: 150px;
   margin-right: 100px;
-  padding-top: 10px;
+  /* padding-top: 10px; */
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
 }
 
 /* Ensures text color is white for all text within the navbar */
@@ -52,6 +63,7 @@
   /* font-weight: bold; */
   letter-spacing: 1px;
   /* padding-bottom: 30px; */
+  gap: 20px; 
 }
 
 .animated_button span:last-child {
@@ -199,6 +211,7 @@ button:hover .button_text {
   width: 900px;
   height: 5rem;
   border-radius: 2.5rem;
+  z-index: 1000;
 
 }
 

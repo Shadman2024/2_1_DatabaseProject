@@ -12,22 +12,24 @@
 .container2 {
   display: flex;
 }
-
 .containerleft {
   color: rgb(32, 32, 32);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  width: 30%;
-  height: 800px;
+  width: 40%;
+  /* height: 800px; */
+  aspect-ratio: 1 / 1; 
   margin: 10px;
   padding: 1%;
 }
+
 
 .containermiddle {
   /* background-color: black; */
   color: rgb(32, 32, 32);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  width: 50%;
-  height: 800px;
+  width: 40%;
+  aspect-ratio: 1 / 1; 
+  /* height: 800px; */
   margin: 10px;
   padding: 1%;
 }
@@ -35,9 +37,10 @@
 .containerright {
   color: rgb(32, 32, 32);
   /* background-color: black; */
+  aspect-ratio: 1 / 1; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   width: 20%;
-  height: 800px;
+  /* height: 800px; */
   margin: 10px;
   padding: 1%;
 }
@@ -54,17 +57,48 @@
 }
 
 .container2right {
-  /* background-color: black; */
   color: rgb(32, 32, 32);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   width: 30%;
   height: 1200px;
   margin: 10px;
   padding: 1%;
+  overflow-y: scroll;
+
+}
+.contItem{
+  display: flex; /* Enables Flexbox */
+  flex-direction: column; /* Aligns children vertically */
+  align-items: center; /* Centers children horizontally */
+  justify-content: flex-start; /* Align items to the start of the container */
+  gap: 20px; /* Adjust the gap size as needed */
+}
+
+.container2right::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+.seller_rating{
+  font-size: 50px;
+}
+
+
+.changebuttons{
+  position: absolute;
+  top: 67%;
+  left:22%;
+  gap: 10px;
+  display: flex;
+  /* padding-left: 35%; */
+  /* background-color: #ffffff; */
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .image {
   width: 100%;
+  aspect-ratio:  1/1;
 }
 
 .animated_button {
@@ -137,7 +171,7 @@
 }
 .itemrating {
   font-size: 40px;
-  color: #ec9a00;
+  /* color: #ec9a00; */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* X-offset, Y-offset, blur radius, color */
 }
 .discounted_price{

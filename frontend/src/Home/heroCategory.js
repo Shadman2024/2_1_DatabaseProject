@@ -1,6 +1,8 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import SmallCategory from "./smallcategory";
 import styles from './herocategory.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLayerGroup } from '@fortawesome/free-solid-svg-icons'; 
 
 const HeroCategory = () => {
     const wrapperRef = useRef(null);
@@ -36,7 +38,8 @@ const HeroCategory = () => {
     return (
         <Fragment>
             <div className={styles.topCategories}>
-                <div className={styles.title}>TOP CATEGORIES</div>
+                <div className={styles.title}>TOP
+                <FontAwesomeIcon icon={faLayerGroup} size="xl" style={{color: "#ffffff",}} />CATEGORIES</div>
                 <div className={styles.wrapperContainer}>
                     <div className={`${styles.arrow} ${styles.left_arrow}`} onClick={handleLeftClick}>&#10094;</div>
                     <div className={styles.wrapper} ref={wrapperRef}>

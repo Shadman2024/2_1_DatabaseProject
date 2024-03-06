@@ -21,13 +21,6 @@ CREATE TABLE users (
     CHECK (phone_number IS NOT NULL OR email IS NOT NULL)
 );
 
-
-
-
-
-
-
-
 --phone number is a multivalued attribute so another table was needed to maintain the first normal form
 -- Table for User Phone Numbers
 CREATE TABLE user_phone_number (
