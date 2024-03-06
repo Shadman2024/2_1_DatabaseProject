@@ -97,7 +97,7 @@ const ItemBig = () => {
             if (!itemDetails.item_name) return; // Ensure there's a name to search for
 
             const accessKey = 'uG-SeNJmzLR11udbsR_y8x_qP-1aZZSK9GmiZmi3haQ';
-            const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(itemDetails.item_name)}&client_id=${accessKey}&per_page=2`;
+            const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(itemDetails.item_name)}&client_id=${accessKey}&per_page=4`;
 
             try {
                 const response = await fetch(url);

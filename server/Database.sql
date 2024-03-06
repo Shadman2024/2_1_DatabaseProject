@@ -202,3 +202,10 @@ CREATE TABLE search_history (
     search_timestamp TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
+
+CREATE TABLE user_photo (
+    user_id INT NOT NULL UNIQUE,
+    photo_url TEXT,
+    PRIMARY KEY (user_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
