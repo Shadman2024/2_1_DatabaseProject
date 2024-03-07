@@ -1,9 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
-import styles from './footer.module.css';
+import styles from './admin.module.css';
 
-
-
-const footer = () => {
+const admin = () => {
   
   return (
     <Fragment>
@@ -14,4 +12,4 @@ const footer = () => {
   );
 };
 
-export default footer;
+export default admin;

@@ -8,7 +8,7 @@ const footer = () => {
   return (
     <Fragment>
         <div className={styles.container}>
-            <div>Admin Login</div>
+            ADMin
         </div>
     </Fragment>
   );

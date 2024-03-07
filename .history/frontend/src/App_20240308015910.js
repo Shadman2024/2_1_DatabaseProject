@@ -25,18 +25,6 @@ import Admin from './admin/admin';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
-  const [showAdminPasswordPrompt, setShowAdminPasswordPrompt] = useState(false);
-  const handleAdminAccess = () => {
-    const password = prompt("Please enter the admin password:");
-    if (password === "admin") {
-      setIsAdminAuthenticated(true);
-    } else {
-      alert("Incorrect password.");
-      setIsAdminAuthenticated(false);
-    }
-  };
-  
 
   useEffect(() => {
     // Ideally, you should verify the authentication status with the backend
@@ -56,15 +44,15 @@ function App() {
       <Routes>
         <Route path="/login" element={!isAuthenticated ? <LogIn setAuth={setAuth} /> : <Navigate replace to="/dashboard" />} />
         <Route path="/signup" element={!isAuthenticated ? <SignUp setAuth={setAuth} /> : <Navigate replace to="/dashboard" />} />
-        <Route path="/dashboard" element={isAuthenticated ? <Dashboard setAuth={setAuth} /> : <Navigate replace to="/login" />} />
-        <Route path="/cart" element={isAuthenticated ? <Cart setAuth={setAuth} /> : <Navigate replace to="/login" />} />
-        <Route path="/menu" element={isAuthenticated ? <Menu setAuth={setAuth} /> : <Navigate replace to="/login" />} />
-        <Route path="/myList" element={isAuthenticated ? <MyList setAuth={setAuth} /> : <Navigate replace to="/login" />} />
-        <Route path="/messages" element={isAuthenticated ? <Messaging setAuth={setAuth} /> : <Navigate replace to="/login" />} />
-        <Route path="/admin" element={  <Admin />  }/>
+        <Route path="/dashboard" element={isAuthenticated ? <Dashboard setAuth={setAuth}/> : <Navigate replace to="/login" />} />
+        <Route path="/cart" element={isAuthenticated ? <Cart setAuth={setAuth}/> : <Navigate replace to="/login" />} />
+        <Route path="/menu" element={isAuthenticated ? <Menu setAuth={setAuth}/> : <Navigate replace to="/login" />} />
+        <Route path="/myList" element={isAuthenticated ? <MyList setAuth={setAuth}/> : <Navigate replace to="/login" />} />
+        <Route path="/messages" element={isAuthenticated ? <Messaging setAuth={setAuth}/> : <Navigate replace to="/login" />} />
+        <Route path="/admin" element={isAdmin ? <Admin /> : <Navigate replace to="/" />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/itemExpand" element={<ItemBig />} />
-        <Route path="/addItems" element={<AddItems />} />
+        <Route path="/addItems" element={<AddItems/>} />
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<SearchResults />} />
         <Route path="/item/:itemId" element={<Bigitem />} />

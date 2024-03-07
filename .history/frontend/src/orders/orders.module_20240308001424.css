@@ -13,35 +13,28 @@
   /* background-color: #f9f9f9; */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  background-color: #97adda;
 }
 
 .title {
-  font-size: 30px;;
+  /* Add styles for your title here */
+  margin-bottom: 10px;
+  /* Example space between title and wrapper */
+  font-size: 30px;
   color: rgb(255, 255, 255);
   font-weight: bolder;
-  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,50%) 0.1%, rgba(0,94,120,50%) 94.2% );
+  padding-left: 200px;
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
   margin-top: 0px;
-  /* background-color: #ba96db; */
   letter-spacing: 5px;
-  margin-bottom: 0px;
-  padding-bottom: 0px;
-  border-radius: 0.5rem;
-  padding: 10px;
-  text-align: center;
-  border-radius: 1rem 1rem 1rem 1rem;
-  margin-bottom: 10px;
 }
 
 .order {
   /* background: #ffffff; */
   padding: 15px;
   margin-bottom: 20px;
-  /* border-radius: 8px; */
-  /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   font-size: 20px;
-  border-radius: 1rem 1rem 1rem 1rem;
-  background-color: white;
 }
 
 .order h3 {
@@ -52,7 +45,7 @@
 }
 
 .order p {
-  color: #313131;
+  color: #666;
   margin: 5px 0;
 }
 
@@ -63,7 +56,7 @@ ul {
 
 li {
   margin: 5px 0;
-  color: #363636;
+  color: #555;
 }
 
 strong {
@@ -105,10 +98,5 @@ strong {
 }
 
 .orders_table th {
-  background-color: teal;
-  /* color: #313131; */
-}
-.orders_table td {
-  background-color: #e0e0e0;
-  color: #313131;
+  background-color: #89b19a;
 }

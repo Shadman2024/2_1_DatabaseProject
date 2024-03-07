@@ -61,7 +61,7 @@ function App() {
         <Route path="/menu" element={isAuthenticated ? <Menu setAuth={setAuth} /> : <Navigate replace to="/login" />} />
         <Route path="/myList" element={isAuthenticated ? <MyList setAuth={setAuth} /> : <Navigate replace to="/login" />} />
         <Route path="/messages" element={isAuthenticated ? <Messaging setAuth={setAuth} /> : <Navigate replace to="/login" />} />
-        <Route path="/admin" element={  <Admin />  }/>
+        <Route path="/admin" element={isAdminAuthenticated ? <Admin /> : <Navigate replace to="/" />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/itemExpand" element={<ItemBig />} />
         <Route path="/addItems" element={<AddItems />} />

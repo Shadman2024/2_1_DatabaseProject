@@ -11,7 +11,6 @@ import Footer from "./footer";
 
 const Home=()=>{
     return(
-        <div>
         <div className={style.home}>
             {/* <Hero2 className={style._hero}></Hero2> */}
             <br></br>
@@ -29,7 +28,6 @@ const Home=()=>{
             </div>
         </div>
             <Footer/>
-        </div>
     )
 }
 export default Home;

@@ -7,11 +7,10 @@ import HeroCategory from "./heroCategory";
 import MiniItemPage from "../Item/miniItemPage";
 import AllItem from "../Item/allItem";
 import Top from "../top/top"
-import Footer from "./footer";
+import footer from "./footer";
 
 const Home=()=>{
     return(
-        <div>
         <div className={style.home}>
             {/* <Hero2 className={style._hero}></Hero2> */}
             <br></br>
@@ -25,10 +24,9 @@ const Home=()=>{
             </div>
             <AllItem className={style.AllItem}></AllItem>
             {/* <Hero3 className={style._hero}></Hero3>    */}
-
+            <footer/>
             </div>
-        </div>
-            <Footer/>
+
         </div>
     )
 }

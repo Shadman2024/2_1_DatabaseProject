@@ -110,38 +110,6 @@ const Orders = () => {
             ))}
           </div>
         </div>
-        <div className={styles.topitem}>
-          <div className={styles.title}>TOP ITEMS</div>
-          <div className={styles.options}>
-            <div
-              className={`${styles.optn} ${timeFrame === 'Today' ? styles.active : ''}`}
-              onClick={() => setTimeFrame('Today')}
-            >
-              Today
-            </div>
-            <div
-              className={`${styles.optn} ${timeFrame === 'ThisWeek' ? styles.active : ''}`}
-              onClick={() => setTimeFrame('ThisWeek')}
-            >
-              This Week
-            </div>
-          </div>
-          <div className={styles.contentcontainer}>
-            {items.map((item, index) => (
-              <div key={index} className={styles.content}>
-                <div className={styles.number}>{index + 1}</div>
-                <div className={styles.image}><img src={item.image || defaultimage} className={styles.itemimage} alt={item.name} /></div>
-                <div className={styles.details}>
-                  <div className={styles.name}>{item.name}</div>
-                  <div className={styles.rating}>
-                    {renderStars(item.avg_star_rating)}
-                  </div>
-                  <div className={styles.ordered}>{item.order_count} Sold</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </Fragment>
   );
