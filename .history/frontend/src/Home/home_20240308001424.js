@@ -6,7 +6,6 @@ import Hero3 from "./hero3";
 import HeroCategory from "./heroCategory";
 import MiniItemPage from "../Item/miniItemPage";
 import AllItem from "../Item/allItem";
-import Top from "../top/top"
 const Home=()=>{
     return(
         <div className={style.home}>
@@ -14,9 +13,8 @@ const Home=()=>{
             <br></br>
             <br></br>
             <div className={style.container}>
-            <Top/>
             <HeroCategory className={style._hero}></HeroCategory>
-            {/* <Hero className={style._hero}></Hero> */}
+            <Hero className={style._hero}></Hero>
             <div className={style.trendingNow}>
                 <MiniItemPage className={style.miniItemPage}></MiniItemPage>
             </div>

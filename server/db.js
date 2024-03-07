@@ -11,10 +11,10 @@ const { Pool } = require('pg');
 
 const pool = new Pool({
   user : "postgres",
-   password: "harry",
+   password: "mim",
    host: "localhost",
    port: 5432,
-   database: "e_commerce"
+   database: "postgres"
 });
 
 pool.connect((err, client, release) => {

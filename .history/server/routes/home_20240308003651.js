@@ -22,14 +22,17 @@ router.get('/home/trending', async (req, res) => {
 });
 router.get('/home/top/:timeFrame', async (req, res) => {
     const timeFrame = req.params.timeFrame;
-    let startDate, endDate = new Date().toISOString().slice(0, 10); // Defaults to today for endDate
     const now = new Date();
+    let startDate = now.toISOString().slice(0, 10); // Defaults to today for startDate, which will be adjusted below if needed
+    let endDate = now.toISOString().slice(0, 10); // Defaults to today for endDate
 
     if (timeFrame.toLowerCase() === 'today') {
-        startDate = now.toISOString().slice(0, 10); // Today's date
+        // startDate and endDate are the same, representing today
     } else if (timeFrame.toLowerCase() === 'thisweek') {
-        // Calculate the start of the week, considering Sunday as the start
+        // Set startDate to the first day of the week (Sunday)
         startDate = new Date(now.setDate(now.getDate() - now.getDay())).toISOString().slice(0, 10);
+        // Set endDate to the last day of the week (Saturday)
+        endDate = new Date(now.setDate(now.getDate() - now.getDay() + 6)).toISOString().slice(0, 10);
     } else {
         return res.status(400).send('Invalid timeframe');
     }
@@ -63,7 +66,6 @@ router.get('/home/top/:timeFrame', async (req, res) => {
     LEFT JOIN ItemRatings ON items.item_id = ItemRatings.item_id
     WHERE OrderedItems.order_count > 0
     ORDER BY order_count DESC, avg_star_rating DESC;
-    
     `;
 
     const queryParams = [startDate, endDate];
@@ -77,7 +79,6 @@ router.get('/home/top/:timeFrame', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-
 router.get('/home/all_category', async (req, res) => {
     try {
         const sqlQuery = `

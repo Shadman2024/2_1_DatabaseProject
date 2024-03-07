@@ -35,35 +35,14 @@ router.get('/home/top/:timeFrame', async (req, res) => {
     }
 
     let sqlQuery = `
-    WITH OrderedItems AS (
-        SELECT 
-            order_details.item_id, 
-            SUM(order_details.quantity) AS order_count
-        FROM order_details
-        JOIN orders ON order_details.order_id = orders.order_id
-        WHERE orders.created_at::date BETWEEN $1 AND $2
-        GROUP BY order_details.item_id
-        HAVING SUM(order_details.quantity) > 0
-    ),
-    ItemRatings AS (
-        SELECT 
-            item_id, 
-            COALESCE(AVG(star_rating), 0) AS avg_star_rating
-        FROM reviews
-        GROUP BY item_id
-    )
-    SELECT 
-        items.item_id, 
-        items.name, 
-        items.image,
-        COALESCE(OrderedItems.order_count, 0) AS order_count,
-        COALESCE(ItemRatings.avg_star_rating, 0) AS avg_star_rating
-    FROM items
-    LEFT JOIN OrderedItems ON items.item_id = OrderedItems.item_id
-    LEFT JOIN ItemRatings ON items.item_id = ItemRatings.item_id
-    WHERE OrderedItems.order_count > 0
-    ORDER BY order_count DESC, avg_star_rating DESC;
-    
+    SELECT items.item_id, items.name, items.image, 
+           SUM(order_details.quantity) AS total_ordered_quantity
+    FROM order_details
+    JOIN orders ON order_details.order_id = orders.order_id
+    JOIN items ON order_details.item_id = items.item_id
+    WHERE orders.created_at::date BETWEEN $1 AND $2
+    GROUP BY items.item_id
+    ORDER BY total_ordered_quantity DESC
     `;
 
     const queryParams = [startDate, endDate];

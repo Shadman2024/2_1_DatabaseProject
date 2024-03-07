@@ -43,7 +43,7 @@ router.get('/home/top/:timeFrame', async (req, res) => {
         JOIN orders ON order_details.order_id = orders.order_id
         WHERE orders.created_at::date BETWEEN $1 AND $2
         GROUP BY order_details.item_id
-        HAVING SUM(order_details.quantity) > 0
+        HAVING SUM(order_details.quantity) > 0 -- Ensure only items with orders are included
     ),
     ItemRatings AS (
         SELECT 
@@ -61,7 +61,7 @@ router.get('/home/top/:timeFrame', async (req, res) => {
     FROM items
     LEFT JOIN OrderedItems ON items.item_id = OrderedItems.item_id
     LEFT JOIN ItemRatings ON items.item_id = ItemRatings.item_id
-    WHERE OrderedItems.order_count > 0
+    WHERE OrderedItems.order_count > 0  -- Filter to include only items with orders
     ORDER BY order_count DESC, avg_star_rating DESC;
     
     `;
