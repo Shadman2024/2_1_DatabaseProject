@@ -22,7 +22,7 @@ app.use("/messages", require("../server/routes/messages"));
 app.use("/search", require("../server/routes/search"));
 app.use("/", require("../server/routes/home"));
 app.use("/update_profile", require("../server/routes/updateProfile"));
-
+app.use("/add_discount", require("../server/routes/addDiscount"));
 
 
 // Start the server
