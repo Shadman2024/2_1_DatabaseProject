@@ -16,9 +16,9 @@ const Home=()=>{
             {/* <Hero2 className={style._hero}></Hero2> */}
             <br></br>
             <br></br>
+            <Top/>
             <div className={style.container}>
             <HeroCategory className={style._hero}></HeroCategory>
-            <Top/>
             {/* <Hero className={style._hero}></Hero> */}
             <div className={style.trendingNow}>
                 <MiniItemPage className={style.miniItemPage}></MiniItemPage>
