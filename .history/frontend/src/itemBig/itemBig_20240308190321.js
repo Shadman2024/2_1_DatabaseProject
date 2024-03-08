@@ -176,7 +176,7 @@ const ItemBig = () => {
         }
     
         const sellerUserId = itemDetails.user_id; // Extracting the seller's user ID from itemDetails
-        const formattedMessage = `[${itemDetails.item_name} (ID: ${itemDetails.item_id})]: ${messageToSend}`;
+    
         try {
             const response = await fetch(`http://localhost:5000/messages/send`, {
                 method: 'POST',
@@ -187,7 +187,7 @@ const ItemBig = () => {
                 },
                 body: JSON.stringify({
                     user_id_receiver: sellerUserId, // Sending as user_id_receiver
-                    message: formattedMessage // The message text
+                    message: messageToSend // The message text
                 }),
             });
     

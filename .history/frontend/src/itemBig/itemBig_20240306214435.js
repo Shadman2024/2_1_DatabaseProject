@@ -4,13 +4,11 @@ import defaultImage from "../Item/itemMini.webp";
 import { useLocation } from 'react-router-dom';
 import _mini_miniItemPage from '../Item/_mini_miniItemPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faDollarSign, faCircleChevronRight, faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faDollarSign, faCircleChevronRight ,faCircleChevronLeft} from '@fortawesome/free-solid-svg-icons';
 
 const ItemBig = () => {
-    const [messageToSend, setMessageToSend] = useState('');
     const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
     const location = useLocation();
-    const [showMessageInput, setShowMessageInput] = useState(false);
     const [itemDetails, setItemDetails] = useState({
         item_id: '',
         item_name: '',
@@ -156,7 +154,7 @@ const ItemBig = () => {
         let stars = [];
 
         for (let i = 0; i < rating; i++) {
-            stars.push(<FontAwesomeIcon icon={faStar} />);
+            stars.push(<FontAwesomeIcon icon={faStar} />); 
         }
         for (let i = rating; i < 5; i++) {
             stars.push(<FontAwesomeIcon icon={faStar} style={{ color: "#ebf2ff", }} />);
@@ -169,43 +167,6 @@ const ItemBig = () => {
             currentImageIndex: (prevDetails.currentImageIndex + 1) % prevDetails.unsplashImages.length,
         }));
     };
-    const handleMessageSend = async () => {
-        if (!messageToSend.trim()) {
-            alert("Please enter a message.");
-            return; // Don't send an empty message
-        }
-    
-        const sellerUserId = itemDetails.user_id; // Extracting the seller's user ID from itemDetails
-        const formattedMessage = `[${itemDetails.item_name} (ID: ${itemDetails.item_id})]: ${messageToSend}`;
-        try {
-            const response = await fetch(`http://localhost:5000/messages/send`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    // Assuming the authorization token is stored under the key 'token' in localStorage
-                    token:localStorage.token,
-                },
-                body: JSON.stringify({
-                    user_id_receiver: sellerUserId, // Sending as user_id_receiver
-                    message: formattedMessage // The message text
-                }),
-            });
-    
-            if (!response.ok) {
-                throw new Error('Failed to send message to the seller');
-            }
-    
-            alert('Message sent successfully to the seller.');
-            setMessageToSend(''); // Clear the input field after sending the message
-            setShowMessageInput(false); // Optionally, hide the message input box
-        } catch (error) {
-            console.error('Error:', error);
-            alert('Failed to send message to the seller.');
-        }
-    };
-    
-    
-
 
     const handleprevImage = () => {
         setItemDetails(prevDetails => ({
@@ -216,7 +177,6 @@ const ItemBig = () => {
     console.log(item);
     return (
         <div className={styles.maincontainer}>
-
             <div className={styles.container}>
                 <div className={styles.containerleft}>
                     <img
@@ -225,13 +185,13 @@ const ItemBig = () => {
                         className={styles.image}
                     />
                     <div className={styles.changebuttons}>
-                        {itemDetails.unsplashImages.length > 1 && (
-                            <button onClick={handleprevImage} ><FontAwesomeIcon icon={faCircleChevronLeft} size="2xl" style={{ color: "#ffffff", }} /></button>
-                        )}
-                        {itemDetails.currentImageIndex + 1}/{itemDetails.unsplashImages.length}
-                        {itemDetails.unsplashImages.length > 1 && (
-                            <button onClick={handleNextImage} ><FontAwesomeIcon icon={faCircleChevronRight} size="2xl" style={{ color: "#ffffff", }} /></button>
-                        )}
+                    {itemDetails.unsplashImages.length > 1 && (
+                        <button onClick={handleprevImage} ><FontAwesomeIcon icon={faCircleChevronLeft} size="2xl" style={{color: "#ffffff",}}/></button>
+                    )}
+                    {itemDetails.currentImageIndex+1}/{itemDetails.unsplashImages.length}
+                    {itemDetails.unsplashImages.length > 1 && (
+                        <button onClick={handleNextImage} ><FontAwesomeIcon icon={faCircleChevronRight} size="2xl" style={{color: "#ffffff",}}/></button>
+                    )}
                     </div>
                 </div>
                 <div className={styles.containermiddle}>
@@ -248,23 +208,9 @@ const ItemBig = () => {
                     <button className={styles.animated_button} onClick={handleButtonClick}>
                         {isAuthenticated ? 'Add to Cart' : 'Log In To Add To Cart'}
                     </button>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                        <div className={styles.messageInputContainer}>
-                            <input
-                                type="text"
-                                className={styles.messageInput}
-                                placeholder="Type your message here..."
-                                value={messageToSend}
-                                onChange={(e) => setMessageToSend(e.target.value)}
-                            />
-                        </div>
-                    <button className={styles.animated_button} onClick={handleMessageSend}>
+                    <button className={styles.animated_button} onClick={handleButtonClick}>
                         {'Chat With The Seller'}
                     </button>
-
                 </div>
                 <div className={styles.containerright}>
                     <div className={styles.sellerdetails}>

@@ -7,10 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faDollarSign, faCircleChevronRight, faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 const ItemBig = () => {
-    const [messageToSend, setMessageToSend] = useState('');
     const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
     const location = useLocation();
-    const [showMessageInput, setShowMessageInput] = useState(false);
     const [itemDetails, setItemDetails] = useState({
         item_id: '',
         item_name: '',
@@ -40,7 +38,40 @@ const ItemBig = () => {
                 console.error('Error:', error);
             }
         };
+        const handleMessagesend = async () => {
+            if (!isAuthenticated) {
+                window.location.href = '/login'; // Redirect to login if not authenticated
+                return;
+            }
 
+            const messageText = prompt("Enter your message to the seller:");
+            if (messageText) {
+                try {
+                    const token = localStorage.getItem('token');
+                    const response = await fetch(`http://localhost:5000/send-message/${item.item_id}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}` // Assuming your API uses Bearer token authentication
+                        },
+                        body: JSON.stringify({
+                            message: messageText,
+                            item_id: item.item_id, // Assuming the server needs item_id as part of the body
+                            // user_id could be derived from token in the backend for sender's identity
+                        }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to send message');
+                    }
+
+                    alert('Message sent successfully');
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Failed to send message');
+                }
+            }
+        };
         const fetchRecommendedItems = async (category_name) => {
             try {
                 const response = await fetch(`http://localhost:5000/additem/getitems/${category_name}`, {
@@ -59,164 +90,127 @@ const ItemBig = () => {
                 console.error('Error:', error);
             }
         };
-
+        
         if (item.item_id) {
             fetchItemDetails();
             // Call fetchRecommendedItems after itemDetails is set
             // For this example, let's assume itemDetails includes a category_name once fetched
             fetchRecommendedItems(itemDetails.category_name);
         }
-    }, [item.item_id, itemDetails.category_name]); // Ensure effect runs when category_name changes
+}, [item.item_id, itemDetails.category_name]); // Ensure effect runs when category_name changes
 
-    useEffect(() => {
-        const fetchItemDetails = async () => {
-            try {
-                const { item } = location.state;
-                console.log("II ", item.item_id);
-                const response = await fetch(`http://localhost:5000/additem/getDetails/${item.item_id}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        token: localStorage.token,
-                    },
-                });
-                if (!response.ok) {
-                    throw new Error('Failed to fetch item details');
-                }
-                const data = await response.json();
-                setItemDetails(prevDetails => ({ ...prevDetails, ...data }));
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        };
-
-        if (item.item_id) {
-            fetchItemDetails();
-        }
-    }, [item.item_id]);
-    useEffect(() => {
-        const fetchUnsplashImages = async () => {
-            if (!itemDetails.item_name) return; // Ensure there's a name to search for
-
-            const accessKey = 'uG-SeNJmzLR11udbsR_y8x_qP-1aZZSK9GmiZmi3haQ';
-            const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(itemDetails.item_name)}&client_id=${accessKey}&per_page=4`;
-
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                const imageUrls = data.results.map(result => result.urls.regular);
-                setItemDetails(prevDetails => ({
-                    ...prevDetails,
-                    unsplashImages: imageUrls,
-                }));
-                console.log(response);
-            } catch (error) {
-                console.error('Error fetching images from Unsplash:', error);
-            }
-        };
-
-        fetchUnsplashImages();
-    }, [itemDetails.item_name]);
-
-
-    const defaultQuantity = 1;
-    const addToCart = async () => {
-        const token = localStorage.getItem('token');
-
+useEffect(() => {
+    const fetchItemDetails = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/items/cart/add/${item.item_id}`, {
-                method: 'POST',
+            const { item } = location.state;
+            console.log("II ", item.item_id);
+            const response = await fetch(`http://localhost:5000/additem/getDetails/${item.item_id}`, {
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'token': token
+                    token: localStorage.token,
                 },
-                body: JSON.stringify({
-                    quantity: defaultQuantity
-                }),
             });
-
             if (!response.ok) {
-                throw new Error('Failed to add item to cart');
+                throw new Error('Failed to fetch item details');
             }
-
-            alert('Item added to cart successfully');
+            const data = await response.json();
+            setItemDetails(prevDetails => ({ ...prevDetails, ...data }));
         } catch (error) {
             console.error('Error:', error);
         }
     };
-
-    const handleButtonClick = () => {
-        if (isAuthenticated) {
-            addToCart(item.id, defaultQuantity);
-        } else {
-            window.location.href = '/login';
-        }
-    };
-    const renderStars = (rating) => {
-        let stars = [];
-
-        for (let i = 0; i < rating; i++) {
-            stars.push(<FontAwesomeIcon icon={faStar} />);
-        }
-        for (let i = rating; i < 5; i++) {
-            stars.push(<FontAwesomeIcon icon={faStar} style={{ color: "#ebf2ff", }} />);
-        }
-        return stars;
-    };
-    const handleNextImage = () => {
-        setItemDetails(prevDetails => ({
-            ...prevDetails,
-            currentImageIndex: (prevDetails.currentImageIndex + 1) % prevDetails.unsplashImages.length,
-        }));
-    };
-    const handleMessageSend = async () => {
-        if (!messageToSend.trim()) {
-            alert("Please enter a message.");
-            return; // Don't send an empty message
-        }
     
-        const sellerUserId = itemDetails.user_id; // Extracting the seller's user ID from itemDetails
-        const formattedMessage = `[${itemDetails.item_name} (ID: ${itemDetails.item_id})]: ${messageToSend}`;
+    if (item.item_id) {
+        fetchItemDetails();
+    }
+}, [item.item_id]);
+useEffect(() => {
+    const fetchUnsplashImages = async () => {
+        if (!itemDetails.item_name) return; // Ensure there's a name to search for
+        
+        const accessKey = 'uG-SeNJmzLR11udbsR_y8x_qP-1aZZSK9GmiZmi3haQ';
+        const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(itemDetails.item_name)}&client_id=${accessKey}&per_page=4`;
+        
         try {
-            const response = await fetch(`http://localhost:5000/messages/send`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    // Assuming the authorization token is stored under the key 'token' in localStorage
-                    token:localStorage.token,
-                },
-                body: JSON.stringify({
-                    user_id_receiver: sellerUserId, // Sending as user_id_receiver
-                    message: formattedMessage // The message text
-                }),
-            });
-    
-            if (!response.ok) {
-                throw new Error('Failed to send message to the seller');
-            }
-    
-            alert('Message sent successfully to the seller.');
-            setMessageToSend(''); // Clear the input field after sending the message
-            setShowMessageInput(false); // Optionally, hide the message input box
+            const response = await fetch(url);
+            const data = await response.json();
+            const imageUrls = data.results.map(result => result.urls.regular);
+            setItemDetails(prevDetails => ({
+                ...prevDetails,
+                unsplashImages: imageUrls,
+            }));
+            console.log(response);
         } catch (error) {
-            console.error('Error:', error);
-            alert('Failed to send message to the seller.');
+            console.error('Error fetching images from Unsplash:', error);
         }
     };
     
+    fetchUnsplashImages();
+}, [itemDetails.item_name]);
+
+
+const defaultQuantity = 1;
+const addToCart = async () => {
+    const token = localStorage.getItem('token');
     
+    try {
+        const response = await fetch(`http://localhost:5000/items/cart/add/${item.item_id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token
+            },
+            body: JSON.stringify({
+                quantity: defaultQuantity
+            }),
+        });
 
+        if (!response.ok) {
+            throw new Error('Failed to add item to cart');
+        }
+        
+        alert('Item added to cart successfully');
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
 
-    const handleprevImage = () => {
-        setItemDetails(prevDetails => ({
-            ...prevDetails,
-            currentImageIndex: (prevDetails.currentImageIndex - 1) % prevDetails.unsplashImages.length,
-        }));
-    };
+const handleButtonClick = () => {
+    if (isAuthenticated) {
+        addToCart(item.id, defaultQuantity);
+    } else {
+        window.location.href = '/login';
+    }
+};
+const renderStars = (rating) => {
+    let stars = [];
+    
+    for (let i = 0; i < rating; i++) {
+        stars.push(<FontAwesomeIcon icon={faStar} />);
+    }
+    for (let i = rating; i < 5; i++) {
+        stars.push(<FontAwesomeIcon icon={faStar} style={{ color: "#ebf2ff", }} />);
+    }
+    return stars;
+};
+const handleNextImage = () => {
+    setItemDetails(prevDetails => ({
+        ...prevDetails,
+        currentImageIndex: (prevDetails.currentImageIndex + 1) % prevDetails.unsplashImages.length,
+    }));
+};
+
+const handleprevImage = () => {
+    setItemDetails(prevDetails => ({
+        ...prevDetails,
+        currentImageIndex: (prevDetails.currentImageIndex - 1) % prevDetails.unsplashImages.length,
+    }));
+    
+};
     console.log(item);
     return (
         <div className={styles.maincontainer}>
-
             <div className={styles.container}>
                 <div className={styles.containerleft}>
                     <img
@@ -248,23 +242,9 @@ const ItemBig = () => {
                     <button className={styles.animated_button} onClick={handleButtonClick}>
                         {isAuthenticated ? 'Add to Cart' : 'Log In To Add To Cart'}
                     </button>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                        <div className={styles.messageInputContainer}>
-                            <input
-                                type="text"
-                                className={styles.messageInput}
-                                placeholder="Type your message here..."
-                                value={messageToSend}
-                                onChange={(e) => setMessageToSend(e.target.value)}
-                            />
-                        </div>
-                    <button className={styles.animated_button} onClick={handleMessageSend}>
+                    <button className={styles.animated_button} onClick={handleMessagesend}>
                         {'Chat With The Seller'}
                     </button>
-
                 </div>
                 <div className={styles.containerright}>
                     <div className={styles.sellerdetails}>

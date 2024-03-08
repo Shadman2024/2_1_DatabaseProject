@@ -79,5 +79,4 @@ router.post('/send', authorization, async (req, res) => {
     }
 });
 
-
 module.exports = router;

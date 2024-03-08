@@ -10,7 +10,6 @@ const ItemBig = () => {
     const [messageToSend, setMessageToSend] = useState('');
     const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
     const location = useLocation();
-    const [showMessageInput, setShowMessageInput] = useState(false);
     const [itemDetails, setItemDetails] = useState({
         item_id: '',
         item_name: '',
@@ -171,42 +170,44 @@ const ItemBig = () => {
     };
     const handleMessageSend = async () => {
         if (!messageToSend.trim()) {
-            alert("Please enter a message.");
-            return; // Don't send an empty message
+          alert("Please enter a message.");
+          return; // Don't send an empty message
         }
-    
-        const sellerUserId = itemDetails.user_id; // Extracting the seller's user ID from itemDetails
-        const formattedMessage = `[${itemDetails.item_name} (ID: ${itemDetails.item_id})]: ${messageToSend}`;
+      
+        // Assuming you have the seller's user ID and the item ID
+        const sellerUserId = itemDetails.user_id; // Seller's user ID
+        const itemId = itemDetails.item_id; // Current item ID
+        
         try {
-            const response = await fetch(`http://localhost:5000/messages/send`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    // Assuming the authorization token is stored under the key 'token' in localStorage
-                    token:localStorage.token,
-                },
-                body: JSON.stringify({
-                    user_id_receiver: sellerUserId, // Sending as user_id_receiver
-                    message: formattedMessage // The message text
-                }),
-            });
-    
-            if (!response.ok) {
-                throw new Error('Failed to send message to the seller');
-            }
-    
-            alert('Message sent successfully to the seller.');
-            setMessageToSend(''); // Clear the input field after sending the message
-            setShowMessageInput(false); // Optionally, hide the message input box
+          // Replace the URL with your API endpoint to send a message
+          const response = await fetch(`http://localhost:5000/messages/send`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('token')}` // Assuming you store the token in localStorage
+            },
+            body: JSON.stringify({
+              sellerUserId,
+              itemId,
+              message: messageToSend
+            }),
+          });
+      
+          if (!response.ok) {
+            throw new Error('Failed to send message to the seller');
+          }
+      
+          const responseData = await response.json();
+          console.log(responseData); // Log the response or show a success message
+          alert('Message sent successfully to the seller.');
+          setMessageToSend(''); // Clear the input field after sending the message
         } catch (error) {
-            console.error('Error:', error);
-            alert('Failed to send message to the seller.');
+          console.error('Error:', error);
+          alert('Failed to send message to the seller.');
         }
-    };
-    
-    
-
-
+      };
+      
+      
     const handleprevImage = () => {
         setItemDetails(prevDetails => ({
             ...prevDetails,
@@ -216,7 +217,6 @@ const ItemBig = () => {
     console.log(item);
     return (
         <div className={styles.maincontainer}>
-
             <div className={styles.container}>
                 <div className={styles.containerleft}>
                     <img
@@ -248,23 +248,9 @@ const ItemBig = () => {
                     <button className={styles.animated_button} onClick={handleButtonClick}>
                         {isAuthenticated ? 'Add to Cart' : 'Log In To Add To Cart'}
                     </button>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                        <div className={styles.messageInputContainer}>
-                            <input
-                                type="text"
-                                className={styles.messageInput}
-                                placeholder="Type your message here..."
-                                value={messageToSend}
-                                onChange={(e) => setMessageToSend(e.target.value)}
-                            />
-                        </div>
                     <button className={styles.animated_button} onClick={handleMessageSend}>
                         {'Chat With The Seller'}
                     </button>
-
                 </div>
                 <div className={styles.containerright}>
                     <div className={styles.sellerdetails}>

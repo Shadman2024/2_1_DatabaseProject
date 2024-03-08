@@ -175,19 +175,22 @@ const ItemBig = () => {
             return; // Don't send an empty message
         }
     
-        const sellerUserId = itemDetails.user_id; // Extracting the seller's user ID from itemDetails
-        const formattedMessage = `[${itemDetails.item_name} (ID: ${itemDetails.item_id})]: ${messageToSend}`;
+        // Assuming you have the seller's user ID and the item ID
+        const sellerUserId = itemDetails.user_id; // Seller's user ID
+        const itemId = itemDetails.item_id; // Current item ID
+    
         try {
+            // Replace the URL with your API endpoint to send a message
             const response = await fetch(`http://localhost:5000/messages/send`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    // Assuming the authorization token is stored under the key 'token' in localStorage
-                    token:localStorage.token,
+                    'Authorization': `Bearer ${localStorage.getItem('token')}` // Assuming you store the token in localStorage
                 },
                 body: JSON.stringify({
-                    user_id_receiver: sellerUserId, // Sending as user_id_receiver
-                    message: formattedMessage // The message text
+                    sellerUserId,
+                    itemId,
+                    message: messageToSend
                 }),
             });
     
@@ -195,15 +198,17 @@ const ItemBig = () => {
                 throw new Error('Failed to send message to the seller');
             }
     
+            const responseData = await response.json();
+            console.log(responseData); // Log the response or show a success message
             alert('Message sent successfully to the seller.');
-            setMessageToSend(''); // Clear the input field after sending the message
-            setShowMessageInput(false); // Optionally, hide the message input box
+            // Clear the input field and hide the message input box after successfully sending the message
+            setMessageToSend('');
+            setShowMessageInput(false);
         } catch (error) {
             console.error('Error:', error);
             alert('Failed to send message to the seller.');
         }
     };
-    
     
 
 

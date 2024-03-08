@@ -13,10 +13,8 @@
     overflow-y: auto;
     /* Enable scrolling if list is too long */
     /* background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% ); */
-    background-color: rgba(0, 94, 120, 1);
+    background-color: #97adda;
     /* Light grey background */
-    border-radius: 1rem 1rem 1rem 1rem;
-    margin: 10px;
     
 }
 
@@ -100,8 +98,6 @@
     background-color: #97adda;
     padding-left: 100px;
     padding-right: 100px;
-    border-radius: 1rem 1rem 1rem 1rem;
-
 
     /* Hide scrollbar for WebKit browsers */
     &::-webkit-scrollbar {
@@ -247,9 +243,7 @@
 .whitecontainer{
     background-color: white;
     width: 100%;
-    background-color: #97adda;
-    border-radius: 1rem 1rem 1rem 1rem;
-    margin: 10px;
+    background-color: rgba(0, 152, 155, 1);
 }
 
 .messageInput, .contactsList {
