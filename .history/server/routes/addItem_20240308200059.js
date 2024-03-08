@@ -81,6 +81,16 @@ router.get('/getreviews/:item_id', async (req, res) => {
     console.log("Request received for reviews details, Item ID:", req.params.item_id);
 
     try {
+        const itemDetailsQuery = `...`; // Your existing query for item details
+        
+        // Execute query for item details
+        const itemDetailsResult = await pool.query(itemDetailsQuery, [req.params.item_id]);
+        if (itemDetailsResult.rows.length === 0) {
+            return res.status(404).json({ message: 'Item not found' });
+        }
+        const itemDetails = itemDetailsResult.rows[0];
+
+        // Query to fetch reviews for the item
         const reviewsQuery = `
             SELECT
                 r.content,
@@ -101,6 +111,7 @@ router.get('/getreviews/:item_id', async (req, res) => {
 
         // Combine item details with reviews and send response
         const responsePayload = {
+            ...itemDetails,
             reviews: reviews
         };
 

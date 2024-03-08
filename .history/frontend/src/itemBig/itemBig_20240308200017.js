@@ -26,11 +26,11 @@ const ItemBig = () => {
         average_rating: '',
         unsplashImages: [],
         currentImageIndex: 0,
-        reviews: [],
+        reviews:[],
     });
     const { item } = location.state;
     const { item_id } = item.item_id;
-
+    
     console.log(item.item_id);
     const [recommendedItems, setRecommendedItems] = useState([]);
     useEffect(() => {
@@ -45,12 +45,12 @@ const ItemBig = () => {
                         token: localStorage.token,
                     },
                 });
-
+    
                 if (!detailsResponse.ok) {
                     throw new Error('Failed to fetch item details');
                 }
                 const detailsData = await detailsResponse.json();
-
+    
                 // Fetch item reviews
                 const reviewsResponse = await fetch(`http://localhost:5000/additem/getreviews/${item.item_id}`, {
                     method: 'GET',
@@ -59,24 +59,24 @@ const ItemBig = () => {
                         token: localStorage.token,
                     },
                 });
-
+    
                 if (!reviewsResponse.ok) {
                     throw new Error('Failed to fetch item reviews');
                 }
                 const reviewsData = await reviewsResponse.json();
-
+    
                 // Combine item details with reviews
                 const combinedData = {
                     ...detailsData,
                     reviews: reviewsData.reviews || [],
                 };
-
+    
                 setItemDetails(prevDetails => ({ ...prevDetails, ...combinedData }));
             } catch (error) {
                 console.error('Error:', error);
             }
         };
-
+    
         if (item.item_id) {
             fetchItemDetailsAndReviews();
         }
@@ -223,7 +223,7 @@ const ItemBig = () => {
             alert("Please enter a message.");
             return; // Don't send an empty message
         }
-
+    
         const sellerUserId = itemDetails.user_id; // Extracting the seller's user ID from itemDetails
         const formattedMessage = `[${itemDetails.item_name} (ID: ${itemDetails.item_id})]: ${messageToSend}`;
         try {
@@ -232,18 +232,18 @@ const ItemBig = () => {
                 headers: {
                     'Content-Type': 'application/json',
                     // Assuming the authorization token is stored under the key 'token' in localStorage
-                    token: localStorage.token,
+                    token:localStorage.token,
                 },
                 body: JSON.stringify({
                     user_id_receiver: sellerUserId, // Sending as user_id_receiver
                     message: formattedMessage // The message text
                 }),
             });
-
+    
             if (!response.ok) {
                 throw new Error('Failed to send message to the seller');
             }
-
+    
             alert('Message sent successfully to the seller.');
             setMessageToSend(''); // Clear the input field after sending the message
             setShowMessageInput(false); // Optionally, hide the message input box
@@ -252,8 +252,8 @@ const ItemBig = () => {
             alert('Failed to send message to the seller.');
         }
     };
-
-
+    
+    
 
 
     const handleprevImage = () => {
@@ -301,15 +301,15 @@ const ItemBig = () => {
                     <br></br>
                     <br></br>
                     <br></br>
-                    <div className={styles.messageInputContainer}>
-                        <input
-                            type="text"
-                            className={styles.messageInput}
-                            placeholder="Type your message here..."
-                            value={messageToSend}
-                            onChange={(e) => setMessageToSend(e.target.value)}
-                        />
-                    </div>
+                        <div className={styles.messageInputContainer}>
+                            <input
+                                type="text"
+                                className={styles.messageInput}
+                                placeholder="Type your message here..."
+                                value={messageToSend}
+                                onChange={(e) => setMessageToSend(e.target.value)}
+                            />
+                        </div>
                     <button className={styles.animated_button} onClick={handleMessageSend}>
                         {'Chat With The Seller'}
                     </button>
@@ -330,33 +330,31 @@ const ItemBig = () => {
             </div>
             <div className={styles.container2}>
                 <div className={styles.container2left}>
-                    <div>
-                        <div className={styles.title}>
-                            <h3>Product details of {itemDetails.item_name}</h3>
-                        </div>
-                        <div>{itemDetails.description}</div>
-                        <br></br>
-                        <br></br>
+                    <div className={styles.title}>
+                        <h3>Product details of {itemDetails.item_name}</h3>
                     </div>
-                    <div>
-                        <div className={styles.title}>
-                            <h3>Ratings & Reviews</h3>
-                        </div>
-                        <div className={styles.reviewsContainer}>
-                            {itemDetails.reviews.length > 0 ? (
-                                itemDetails.reviews.map((review, index) => (
-                                    <div key={index} className={styles.review}>
-                                        <div className={styles.reviewerName}>{review.reviewer_name}</div>
-                                        <div className={styles.reviewContent}>{review.content}</div>
-                                        <div className={styles.reviewRating}>Rating: {review.star_rating}</div>
-                                        {/* You can also display upvotes, downvotes, and posted date as needed */}
-                                    </div>
-                                ))
-                            ) : (
-                                <p>No reviews available</p>
-                            )}
-                        </div>
+                    <div>{itemDetails.description}</div>
+                    <br></br>
+                    <br></br>
+                    <div className={styles.title}>
+                        <h3>Ratings & Reviews</h3>
                     </div>
+                    <div className={styles.reviewsContainer}>
+    <h3>Reviews</h3>
+    {itemDetails.reviews.length > 0 ? (
+        itemDetails.reviews.map((review, index) => (
+            <div key={index} className={styles.review}>
+                <div className={styles.reviewerName}>{review.reviewer_name}</div>
+                <div className={styles.reviewContent}>{review.content}</div>
+                <div className={styles.reviewRating}>Rating: {review.star_rating}</div>
+                {/* You can also display upvotes, downvotes, and posted date as needed */}
+            </div>
+        ))
+    ) : (
+        <p>No reviews available</p>
+    )}
+</div>
+
                 </div>
                 <div className={styles.container2right}>
                     <div className={styles.title}>

@@ -50,7 +50,7 @@
   color: rgb(32, 32, 32);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   width: 70%;
-  /* height: 1200px; */
+  height: 1200px;
   margin: 10px;
   padding: 1%;
   font-size: large;
@@ -194,26 +194,9 @@
 .reviewsContainer{
   /* background-color: white; */
   /* margin-bottom: 3px; */
-  height: 500px;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none;  
-  scrollbar-width: none; 
 }
 .review{
   background-color: white;
   margin-bottom: 3px;
   border-radius: 1rem 1rem 1rem 1rem;
-  padding-left: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.reviewerName{
-  font-size: 25px;
-  font-weight: bold;
-  padding-left: 20px;
-  padding-bottom: 10px;
-  padding-top: 10px;
 }

@@ -77,39 +77,6 @@ router.get('/getDetails/:item_id', async (req, res) => {
         res.status(500).json("Server error");
     }
 });
-router.get('/getreviews/:item_id', async (req, res) => {
-    console.log("Request received for reviews details, Item ID:", req.params.item_id);
-
-    try {
-        const reviewsQuery = `
-            SELECT
-                r.content,
-                r.star_rating,
-                r.upvotes,
-                r.downvotes,
-                r.date_posted,
-                (u.first_name || ' ' || u.last_name) AS reviewer_name
-            FROM reviews r
-            JOIN users u ON r.user_id = u.user_id
-            WHERE r.item_id = $1
-            ORDER BY r.date_posted DESC;
-        `;
-
-        // Execute query for reviews
-        const reviewsResult = await pool.query(reviewsQuery, [req.params.item_id]);
-        const reviews = reviewsResult.rows;
-
-        // Combine item details with reviews and send response
-        const responsePayload = {
-            reviews: reviews
-        };
-
-        res.json(responsePayload);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).json("Server error");
-    }
-});
 
 router.get('/getitems/:category_name', async (req, res) => {
     console.log("Request received for category_name:", req.params.category_name);

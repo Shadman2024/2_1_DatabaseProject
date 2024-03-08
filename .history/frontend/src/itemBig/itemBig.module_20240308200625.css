@@ -194,26 +194,10 @@
 .reviewsContainer{
   /* background-color: white; */
   /* margin-bottom: 3px; */
-  height: 500px;
   overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none;  
-  scrollbar-width: none; 
 }
 .review{
   background-color: white;
   margin-bottom: 3px;
   border-radius: 1rem 1rem 1rem 1rem;
-  padding-left: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.reviewerName{
-  font-size: 25px;
-  font-weight: bold;
-  padding-left: 20px;
-  padding-bottom: 10px;
-  padding-top: 10px;
 }
