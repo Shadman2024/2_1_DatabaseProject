@@ -22,7 +22,7 @@ function ItemSaleForm() {
   const [subcategories, setSubcategories] = useState([]);
   const [showSubcategoryInput, setShowSubcategoryInput] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e) => { 
     const { name, value } = e.target;
 
     if (name === "itemCategory") {
@@ -42,11 +42,12 @@ function ItemSaleForm() {
           // This no longer automatically prompts for a new subcategory
           setSubcategories(["Add New Subcategory..."]);
         }
-      } else {
+      } else if(value !== item.itemCategory) {
         // Existing category selected, reset subcategory
         setItem((prevItem) => ({
           ...prevItem,
-          [name]: value,
+          //[name]: value,
+          itemCategory: value,
           itemSubcategory: "",
         }));
       }
@@ -54,9 +55,11 @@ function ItemSaleForm() {
       if (value === "Add New Subcategory...") {
         // Optionally keep or adjust this part if you want a different flow for adding new subcategories
         // For example, showing an input field directly in the form instead of using a prompt
-      } else {
+      } else if(value!==item.itemSubcategory){
         // Subcategory selected
-        setItem((prevItem) => ({ ...prevItem, itemSubcategory: value }));
+        setItem((prevItem) => ({ ...prevItem, 
+         // [name]:value,
+           itemSubcategory: value }));
       }
     } else {
       // Handle changes for other input fields
@@ -97,6 +100,12 @@ function ItemSaleForm() {
           const data = await response.json();
           // Always include "Add New Subcategory..." option
           setSubcategories([...data, "Add New Subcategory..."]);
+          if (data.length > 0) {
+            setItem((prevItem) => ({
+              ...prevItem,
+              itemSubcategory: data[0],
+            }));
+          }
         } catch (error) {
           console.error("There was a problem fetching subcategories:", error);
           setSubcategories(["Add New Subcategory..."]); // Ensure the option is present even on fetch failure
@@ -109,60 +118,6 @@ function ItemSaleForm() {
     fetchSubcategories();
   }, [item.itemCategory]);
 
-  //shadman Abid //////////////////////////////////////////////////////////////
-    const [isDiscount, setDiscount] = useState(false);
-    const [discountTypeData, setDiscountTypeData] = useState([]);
-     const [discountData, setDiscountData] = useState({
-    discountType: "",
-    description: "",
-    startDate: "",
-    duration: "",
-  });
-
-    const handleAddDiscount = () => { 
-        // try {
-        //     const res = await fetch('http://localhost:5000/add_discount', {
-        //         method: 'GET',
-        //         headers: {
-        //             token: localStorage.token
-        //         }
-        //     });
-        //     const resData = await res.json();
-        //     console.log('resData', resData);
-        //     if (res.ok) {
-        //         setDiscountTypeData();
-        //   }
-          setDiscount(true);
-
-        // }catch(error){
-        //     console.error( error.message);
-        // }
-
-
-  };
-  
-  useEffect(() => { 
-    const fetchDiscountType = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/add_discount', {
-          method: 'GET',
-          headers: {
-            token: localStorage.token
-          }
-        });
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setDiscountTypeData(data.map((type) => type.discount_type)  || []);
-        console.log('discountTypeData', discountTypeData);
-      } catch (error) {
-        console.error('There was a problem fetching discount types:', error.message);
-      }
-    };
-
-    fetchDiscountType();
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -304,60 +259,8 @@ function ItemSaleForm() {
           </div>
         )}
 
-        {/* Add discount*/}
-        <div>
-          {isDiscount ? (
-            <div className="discount-fields">
-              <div className={styles.divCategory}>
-              <label htmlFor="discountType" className={styles.categorylabel}> Discount Type:</label>
-              <select
-                id="discountType"
-                  value={discountData.discountType}
-                  className={styles.select}
-                onChange={(e)=> setDiscountData({ ...discountData, discountType: e.target.value }) }
-                required
-              >
-                {/* Assuming your enum values are in an array called discountTypeEnum */}
-                {discountTypeData && discountTypeData.map((type) => (
-                  <option key={type} value={type}>
-                    {type}
-                  </option>
-                ))}
-              </select>
-              </div >
-              <div  className={styles.textarea}>
-              <label htmlFor="description" className={styles.categorylabel}>Description:</label>
-              <textarea
-                id="description"
-                  value={discountData.description}
-               
-                onChange={(e) => setDiscountData({ ...discountData, description: e.target.value })}
-                required
-              />
-              </div>
-              <label htmlFor="startDate">Start Date:</label>
-              <input
-                id="startDate"
-                type="date" // Use the appropriate date picker component if needed
-                value={discountData.startDate}
-                onChange={(e) => setDiscountData({ ...discountData, startDate: e.target.value })}
-                required
-              />
-              <input
-                id="duration"
-                type="number"
-                value={discountData.duration}
-                onChange={(e) => setDiscountData({ ...discountData, duration: e.target.value })}
-                required
-              />
-            </div>
-          ) : (
-            <div className="add-discount-btn">
-              <button onClick={handleAddDiscount} className={styles.animated_button}>Add Discount</button>
-            </div>
-          )}
-        </div>
-        <button className={styles.animated_button} >Submit</button>
+      
+        <button className={styles.animated_button}>Submit</button>
       </form>
     </div>
   );

@@ -15,7 +15,9 @@ router.post('/', authorization, async (req, res) => {
         VALUES ($1, $2)  ON CONFLICT (user_id) 
         DO UPDATE SET phone_number = EXCLUDED.phone_number RETURNING *`;
        const phonequery= await pool.query(insertPhoneNumberQuery, [user, optionalPhone]);
-        const insertPhotoUrlQuery = `INSERT INTO user_photo (user_id, photo_url)   VALUES($1,$2) RETURNING *`;
+        const insertPhotoUrlQuery = `INSERT INTO user_photo (user_id, photo_url) 
+        VALUES ($1, $2)  ON CONFLICT (user_id) 
+        DO UPDATE SET photo_url = EXCLUDED.photo_url RETURNING *`;
         const photoquery=await pool.query(insertPhotoUrlQuery, [user, photo_url]);
       console.log(phonequery.rows[0]);
       console.log(photoquery.rows[0]);
