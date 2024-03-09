@@ -62,7 +62,7 @@ const Orders = () => {
         body: JSON.stringify({
           item_id: item_id,
           content: content,
-          star_rating: star_rating,
+          star_rating: starRating,
         }),
       });
       if (!response.ok) {
@@ -96,7 +96,7 @@ const Orders = () => {
                   <div key={index} className={styles.reviewSection}>
                     <p>{item.name} - Quantity: {item.quantity} - Price: ${Number(item.price).toFixed(2)}</p>
                     <input type="text" placeholder="Write a review..." onChange={(e) => item.content = e.target.value} />
-                    <select className={styles.star} onChange={(e) => item.star_rating = parseInt(e.target.value, 10)} defaultValue={0}>
+                    <select className={styles.star} onChange={(e) => item.starRating = parseInt(e.target.value, 10)} defaultValue={0}>
                       <option value={0} disabled>Rate...</option>
                       {[1, 2, 3, 4, 5].map(star => <option key={star} value={star}>{unicodeStars(star)}</option>)}
                     </select>

@@ -47,11 +47,8 @@ const Orders = () => {
     return stars;
   };
 
-  const submitReview = async (item_id, content, star_rating) => {
+  const submitReview = async (itemId, content, starRating) => {
     // const token = localStorage.getItem('token');
-    console.log(item_id);
-    console.log(content);
-    console.log(star_rating);
     try {
       const response = await fetch('http://localhost:5000/additem/reviews', {
         method: 'POST',
@@ -60,9 +57,9 @@ const Orders = () => {
           token:localStorage.token,
         },
         body: JSON.stringify({
-          item_id: item_id,
+          item_id: itemId,
           content: content,
-          star_rating: star_rating,
+          star_rating: starRating,
         }),
       });
       if (!response.ok) {
@@ -96,11 +93,11 @@ const Orders = () => {
                   <div key={index} className={styles.reviewSection}>
                     <p>{item.name} - Quantity: {item.quantity} - Price: ${Number(item.price).toFixed(2)}</p>
                     <input type="text" placeholder="Write a review..." onChange={(e) => item.content = e.target.value} />
-                    <select className={styles.star} onChange={(e) => item.star_rating = parseInt(e.target.value, 10)} defaultValue={0}>
+                    <select className={styles.star} onChange={(e) => item.starRating = parseInt(e.target.value, 10)} defaultValue={0}>
                       <option value={0} disabled>Rate...</option>
                       {[1, 2, 3, 4, 5].map(star => <option key={star} value={star}>{unicodeStars(star)}</option>)}
                     </select>
-                    <button onClick={() => submitReview(item.item_id, item.content, item.star_rating)}>Submit Review</button>
+                    <button onClick={() => submitReview(item.id, item.content, item.star_rating)}>Submit Review</button>
                   </div>
                 ))
               )}

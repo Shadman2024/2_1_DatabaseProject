@@ -193,10 +193,6 @@ router.post('/reviews', authorization,async (req, res) => {
     console.log("review almost added");
     const user_id=req.user;
     const { item_id, content, star_rating } = req.body;
-    console.log(user_id);
-    console.log(item_id);
-    console.log(content);
-    console.log(star_rating);
   
     try {
       const result = await pool.query(

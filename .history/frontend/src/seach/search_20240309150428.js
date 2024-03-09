@@ -3,19 +3,18 @@ import { useLocation } from 'react-router-dom';
 import styles from './search.module.css';
 import _mini_miniItemPage from '../Item/_mini_miniItemPage';
 import { jwtDecode } from 'jwt-decode';
-import { useNavigate } from "react-router-dom";
+
 function SearchResults() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const query = queryParams.get('query');
     const [categoryName, setCategoryName] = useState('');
-    const [star_rating, setstar_rating] = useState('');
+    const [rating, setRating] = useState('');
     const [sort, setSort] = useState('');
     const [results, setResults] = useState([]);
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(10000);
     const [user, setUser] = useState(null);
-    const navigate = useNavigate();
     const maxRange = 10000;
     const priceGap = 1000;
 
@@ -89,7 +88,7 @@ function SearchResults() {
         const params = new URLSearchParams();
         if (query) params.append('query', query);
         if (categoryName) params.append('categoryName', categoryName);
-        if (star_rating) params.append('star_rating', star_rating);
+        if (rating) params.append('rating', rating);
         if (sort) params.append('sort', sort);
         if (minPrice) params.append('minPrice', minPrice);
         if (maxPrice) params.append('maxPrice', maxPrice);
@@ -117,14 +116,7 @@ function SearchResults() {
         };
 
         fetchResults();
-    }, [query, categoryName, star_rating, sort, minPrice, maxPrice, user]);
-    const unicodeStars = (count) => {
-        const starSymbol = '★'; // Unicode character for a solid star
-        return starSymbol.repeat(count);
-    };
-    const handleItemClick = (item) => {
-        navigate('/itemExpand', { state: { item: item } }); // Pass the clicked item as state
-    };
+    }, [query, categoryName, rating, sort, minPrice, maxPrice, user]);
 
 
     return (
@@ -163,11 +155,11 @@ function SearchResults() {
 
 
                 </div>
-                <select className={styles.select} onChange={(e) => setstar_rating(e.target.value)} value={star_rating}>
-                    <option value="">Select star_rating</option>
-
-                    {[1, 2, 3, 4, 5].map(star => <option key={star} value={star}>{unicodeStars(star)}</option>)}
-
+                <select className={styles.select} onChange={(e) => setRating(e.target.value)} value={rating}>
+                    <option value="">Select Rating</option>
+                    {[1, 2, 3, 4, 5].map((star) => (
+                        <option key={star} value={star}>{`${star} Star${star > 1 ? 's' : ''}`}</option>
+                    ))}
                 </select>
             </div>
             <div className={styles.rightContainer}>
@@ -185,8 +177,7 @@ function SearchResults() {
                 <div className={styles.itemcontainer}>
                     {results.length > 0 ? (
                         results.map((result, index) => (
-                            // Use a lambda function to pass the current result item to handleItemClick
-                            <div className={styles.item} key={index} onClick={() => handleItemClick(result)}>
+                            <div className={styles.item} key={index} >
                                 <_mini_miniItemPage
                                     key={result.item_id || index}
                                     image={result.image}
@@ -200,7 +191,6 @@ function SearchResults() {
                         <p>No results found.</p>
                     )}
                 </div>
-
             </div>
         </div>
     );

@@ -189,14 +189,9 @@ router.post('/addItem', authorization, async (req, res) => {
     }
 });
 
-router.post('/reviews', authorization,async (req, res) => {
+router.post('/reviews/', async (req, res) => {
     console.log("review almost added");
-    const user_id=req.user;
-    const { item_id, content, star_rating } = req.body;
-    console.log(user_id);
-    console.log(item_id);
-    console.log(content);
-    console.log(star_rating);
+    const { item_id, user_id, content, star_rating } = req.body;
   
     try {
       const result = await pool.query(

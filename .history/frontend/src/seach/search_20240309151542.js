@@ -121,11 +121,11 @@ function SearchResults() {
     const unicodeStars = (count) => {
         const starSymbol = '★'; // Unicode character for a solid star
         return starSymbol.repeat(count);
+      };
+      const handleItemClick = (item) => {
+        navigate('/itemExpand', { state: { item } });
     };
-    const handleItemClick = (item) => {
-        navigate('/itemExpand', { state: { item: item } }); // Pass the clicked item as state
-    };
-
+    
 
     return (
         <div className={styles.container}>
@@ -166,7 +166,7 @@ function SearchResults() {
                 <select className={styles.select} onChange={(e) => setstar_rating(e.target.value)} value={star_rating}>
                     <option value="">Select star_rating</option>
 
-                    {[1, 2, 3, 4, 5].map(star => <option key={star} value={star}>{unicodeStars(star)}</option>)}
+                         {[1, 2, 3, 4, 5].map(star => <option key={star} value={star}>{unicodeStars(star)}</option>)}
 
                 </select>
             </div>
@@ -200,7 +200,7 @@ function SearchResults() {
                         <p>No results found.</p>
                     )}
                 </div>
-
+                
             </div>
         </div>
     );

@@ -121,11 +121,11 @@ function SearchResults() {
     const unicodeStars = (count) => {
         const starSymbol = '★'; // Unicode character for a solid star
         return starSymbol.repeat(count);
+      };
+      const handleItemClick = (item) => {
+        navigate('/itemExpand', { state: { item } });
     };
-    const handleItemClick = (item) => {
-        navigate('/itemExpand', { state: { item: item } }); // Pass the clicked item as state
-    };
-
+    
 
     return (
         <div className={styles.container}>
@@ -166,7 +166,7 @@ function SearchResults() {
                 <select className={styles.select} onChange={(e) => setstar_rating(e.target.value)} value={star_rating}>
                     <option value="">Select star_rating</option>
 
-                    {[1, 2, 3, 4, 5].map(star => <option key={star} value={star}>{unicodeStars(star)}</option>)}
+                         {[1, 2, 3, 4, 5].map(star => <option key={star} value={star}>{unicodeStars(star)}</option>)}
 
                 </select>
             </div>
@@ -182,25 +182,19 @@ function SearchResults() {
                         </select>
                     </div>
                 </div>
-                <div className={styles.itemcontainer}>
-                    {results.length > 0 ? (
-                        results.map((result, index) => (
-                            // Use a lambda function to pass the current result item to handleItemClick
-                            <div className={styles.item} key={index} onClick={() => handleItemClick(result)}>
+                <div className={styles.contItem}>
+                        {recommendedItems.length > 0 ? recommendedItems.map((recommendedItem, index) => (
+                            <div className={styles.item} key={index} onClick={() => handleItemClick(recommendedItem)}>
                                 <_mini_miniItemPage
-                                    key={result.item_id || index}
-                                    image={result.image}
-                                    name={result.name}
-                                    price={result.price}
-                                    discount={result.discount}
+                                    item_id={recommendedItem.item_id}
+                                    image={recommendedItem.image} // Assuming a valid image link is always provided
+                                    name={recommendedItem.name}
+                                    price={recommendedItem.price}
+                                    discount={recommendedItem.discount}
                                 />
                             </div>
-                        ))
-                    ) : (
-                        <p>No results found.</p>
-                    )}
-                </div>
-
+                        )) : <p>No recommendations available</p>}
+                    </div>
             </div>
         </div>
     );
