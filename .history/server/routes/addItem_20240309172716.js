@@ -19,7 +19,7 @@ router.get('/getCategory', async (req, res) => {
     }
 });
 router.get('/getDetails/:item_id', async (req, res) => {
-    // console.log("Request received for item details, Item ID:", req.params.item_id);
+    console.log("Request received for item details, Item ID:", req.params.item_id);
 
     try {
         const query = await pool.query(
@@ -78,7 +78,7 @@ router.get('/getDetails/:item_id', async (req, res) => {
     }
 });
 router.get('/getreviews/:item_id', async (req, res) => {
-    // console.log("Request received for reviews details, Item ID:", req.params.item_id);
+    console.log("Request received for reviews details, Item ID:", req.params.item_id);
 
     try {
         const reviewsQuery = `

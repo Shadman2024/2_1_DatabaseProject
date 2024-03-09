@@ -19,7 +19,7 @@ router.get('/getCategory', async (req, res) => {
     }
 });
 router.get('/getDetails/:item_id', async (req, res) => {
-    // console.log("Request received for item details, Item ID:", req.params.item_id);
+    console.log("Request received for item details, Item ID:", req.params.item_id);
 
     try {
         const query = await pool.query(
@@ -78,14 +78,12 @@ router.get('/getDetails/:item_id', async (req, res) => {
     }
 });
 router.get('/getreviews/:item_id', async (req, res) => {
-    // console.log("Request received for reviews details, Item ID:", req.params.item_id);
+    console.log("Request received for reviews details, Item ID:", req.params.item_id);
 
     try {
         const reviewsQuery = `
             SELECT
                 r.content,
-                r.user_id,
-                r.item_id,
                 r.star_rating,
                 r.upvotes,
                 r.downvotes,
@@ -211,13 +209,11 @@ router.post('/reviews', authorization,async (req, res) => {
       res.status(500).json({ error: 'Internal server error' });
     }
   });
-  router.post('/vote', async (req, res) => {
-    console.log("Received vote request");
-    const { user_id, item_id, vote_type } = req.body; // Use user_id and item_id instead of review_id
-    console.log(user_id, item_id, vote_type);
-    const token = req.headers['token']; // Authentication token
+  app.post('/vote', async (req, res) => {
+    const { review_id, vote_type } = req.body;
+    const token = req.headers['token']; // Assuming you handle authentication separately
 
-    // Simple authentication check (should be replaced with actual auth logic)
+    // Simple authentication check (you should replace this with your actual auth logic)
     if (!token) {
         return res.status(403).json({ error: 'No token provided, must be logged in to vote.' });
     }
@@ -225,15 +221,15 @@ router.post('/reviews', authorization,async (req, res) => {
     try {
         // Update the appropriate vote count based on the vote_type
         if (vote_type === 'upvote') {
-            await pool.query('UPDATE reviews SET upvotes = upvotes + 1 WHERE user_id = $1 AND item_id = $2', [user_id, item_id]);
+            await pool.query('UPDATE reviews SET upvotes = upvotes + 1 WHERE review_id = $1', [review_id]);
         } else if (vote_type === 'downvote') {
-            await pool.query('UPDATE reviews SET downvotes = downvotes + 1 WHERE user_id = $1 AND item_id = $2', [user_id, item_id]);
+            await pool.query('UPDATE reviews SET downvotes = downvotes + 1 WHERE review_id = $1', [review_id]);
         } else {
             return res.status(400).json({ error: 'Invalid vote type. Must be "upvote" or "downvote".' });
         }
 
-        // Optionally, retrieve and send back the updated review to the client
-        // const { rows } = await pool.query('SELECT * FROM reviews WHERE user_id = $1 AND item_id = $2', [user_id, item_id]);
+        // Optionally, retrieve the updated review to send back to the client
+        // const { rows } = await pool.query('SELECT * FROM reviews WHERE review_id = $1', [review_id]);
         // res.json(rows[0]);
 
         res.status(200).json({ message: 'Vote registered successfully' });
@@ -242,5 +238,4 @@ router.post('/reviews', authorization,async (req, res) => {
         res.status(500).json({ error: 'Failed to register vote' });
     }
 });
-
 module.exports = router;

@@ -32,9 +32,9 @@ const ItemBig = () => {
     });
     const { item } = location.state;
     const { item_id } = item.item_id;
-    const [recommendedItems, setRecommendedItems] = useState([]);
-    console.log(item.item_id);
 
+    console.log(item.item_id);
+    const [recommendedItems, setRecommendedItems] = useState([]);
     useEffect(() => {
         const fetchItemDetailsAndReviews = async () => {
             try {
@@ -47,12 +47,12 @@ const ItemBig = () => {
                         token: localStorage.token,
                     },
                 });
-    
+
                 if (!detailsResponse.ok) {
                     throw new Error('Failed to fetch item details');
                 }
                 const detailsData = await detailsResponse.json();
-    
+
                 // Fetch item reviews
                 const reviewsResponse = await fetch(`http://localhost:5000/additem/getreviews/${item.item_id}`, {
                     method: 'GET',
@@ -61,37 +61,28 @@ const ItemBig = () => {
                         token: localStorage.token,
                     },
                 });
-    
+
                 if (!reviewsResponse.ok) {
                     throw new Error('Failed to fetch item reviews');
                 }
                 const reviewsData = await reviewsResponse.json();
-    
+
                 // Combine item details with reviews
                 const combinedData = {
                     ...detailsData,
                     reviews: reviewsData.reviews || [],
                 };
-    
+
                 setItemDetails(prevDetails => ({ ...prevDetails, ...combinedData }));
             } catch (error) {
                 console.error('Error:', error);
             }
         };
-    
-        // Call the function immediately to ensure data is fetched on component mount
-        if (item && item.item_id) {
-            fetchItemDetailsAndReviews();
-    
-            // Set up an interval to refresh the data automatically
-            const intervalId = setInterval(fetchItemDetailsAndReviews, 3); // Refresh every 30 seconds
-    
-            // Clear the interval when the component unmounts
-            return () => clearInterval(intervalId);
-        }
-    }, [item.item_id]); // Dependencies array, useEffect will re-run if item.item_id changes
-    
 
+        if (item.item_id) {
+            fetchItemDetailsAndReviews();
+        }
+    }, [item.item_id]);
     useEffect(() => {
         const fetchItemDetails = async () => {
             try {
@@ -128,7 +119,6 @@ const ItemBig = () => {
         }
     }, [item.item_id, itemDetails.category_name]); // Ensure effect runs when category_name changes
 
-
     useEffect(() => {
         const fetchItemDetails = async () => {
             try {
@@ -155,8 +145,6 @@ const ItemBig = () => {
             fetchItemDetails();
         }
     }, [item.item_id]);
-
-
     useEffect(() => {
         const fetchUnsplashImages = async () => {
             if (!itemDetails.item_name) return; // Ensure there's a name to search for
@@ -271,7 +259,7 @@ const ItemBig = () => {
         navigate('/itemExpand', { state: { item } });
     };
 
-    const handleVote = async (userId, itemId, voteType) => {
+    const handleVote = async (reviewId, voteType) => {
         try {
             const response = await fetch(`http://localhost:5000/additem/vote`, {
                 method: 'POST',
@@ -280,8 +268,7 @@ const ItemBig = () => {
                     'token': localStorage.token,
                 },
                 body: JSON.stringify({
-                    user_id: userId,
-                    item_id: itemId,
+                    review_id: review_id,
                     vote_type: voteType, // 'upvote' or 'downvote'
                 }),
             });
@@ -290,13 +277,16 @@ const ItemBig = () => {
                 throw new Error('Failed to register vote');
             }
 
+            // Optionally refresh the item details to reflect the new vote counts
+            // fetchItemDetailsAndReviews();
             console.log('Vote registered successfully');
 
+            // Refresh the reviews to show the updated vote counts
+            // You might want to modify your backend to return the updated review or fetch updated reviews again.
         } catch (error) {
             console.error('Error:', error);
         }
     };
-
 
     const handleprevImage = () => {
         setItemDetails(prevDetails => ({
@@ -387,15 +377,14 @@ const ItemBig = () => {
                         <div className={styles.reviewsContainer}>
                             {itemDetails.reviews.length > 0 ? itemDetails.reviews.map((review, index) => (
                                 <div key={index} className={styles.review}>
-
                                     <div className={styles.reviewerName}>{review.reviewer_name}</div>
                                     <div className={styles.reviewRating}>
                                         {review.star_rating && renderStars(review.star_rating)}
                                     </div>
                                     <div className={styles.reviewContent}>{review.content}</div>
                                     <div className={styles.voteButtons}>
-                                        <button onClick={() => handleVote(review.user_id, review.item_id, 'upvote')} className={styles.votes}><FontAwesomeIcon icon={faThumbsUp} size="2xl" /> {review.upvotes}</button>
-                                        <button onClick={() => handleVote(review.user_id, review.item_id, 'downvote')} className={styles.votes}><FontAwesomeIcon icon={faThumbsDown} size="2xl" /> {review.downvotes}</button>
+                                        <button onClick={() => handleVote(review.review_id, 'upvote')} className={styles.votes}><FontAwesomeIcon icon={faThumbsUp} size="2xl" /> {review.upvotes}</button>
+                                        <button onClick={() => handleVote(review.review_id, 'downvote')} className={styles.votes}><FontAwesomeIcon icon={faThumbsDown} size="2xl" /> {review.downvotes}</button>
                                     </div>
                                 </div>
                             )) : <p>No reviews available</p>}
