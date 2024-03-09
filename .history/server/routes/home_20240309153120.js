@@ -8,43 +8,22 @@ router.get('/home/trending', async (req, res) => {
         // Assuming you want to find trending items based on categories
         // that have been searched for in the last 30 days
         const sqlQuery = `
-        SELECT i.item_id, i.name, i.price, i.image, COUNT(od.order_id) AS order_count
-        FROM items i
-        JOIN order_details od ON i.item_id = od.item_id
-        JOIN orders o ON od.order_id = o.order_id
-        WHERE i.status != 'sold'
-        GROUP BY i.item_id
-        ORDER BY order_count DESC -- Order by order frequency and recency
-        LIMIT 10; -- Limit to top 10 trending items, adjust as necessary
-        `;
-
-        // Execute the query
-        const { rows } = await pool.query(sqlQuery);
-        
-        // Send back the query results
-        res.json(rows);
-    } catch (err) {
-        console.error('Error executing query', err.stack);
-        res.status(500).send('Server error');
-    }
-});
-router.get('/home/onlyforyou', async (req, res) => {
-    try {
-        // Assuming you want to find trending items based on categories
-        // that have been searched for in the last 30 days
-        const sqlQuery = `
-        SELECT i.item_id, i.name, i.price, i.image
-        FROM items i
-        INNER JOIN (
-            SELECT DISTINCT ON (sh.search_query) sh.search_query, sh.category_name
-            FROM search_history sh
-            WHERE sh.search_query IS NOT NULL
-            ORDER BY sh.search_query, sh.search_timestamp DESC
-        ) filtered_search ON i.name ILIKE '%' || filtered_search.search_query || '%'
-        OR i.category_id = (
-            SELECT c.category_id FROM categories c WHERE c.name ILIKE filtered_search.category_name
-        )
-        WHERE i.status != 'sold' -- Exclude items with status 'sold'
+            WITH RecentSearches AS (
+                SELECT category_name, COUNT(*) AS search_count
+                FROM search_history
+                WHERE search_timestamp >= NOW() - INTERVAL '30 days'
+                GROUP BY category_name
+                ORDER BY search_count DESC
+                LIMIT 10
+            ), TrendingItems AS (
+                SELECT i.item_id, i.name, i.price, i.image, i.category_id
+                FROM items i
+                JOIN categories c ON i.category_id = c.category_id
+                WHERE c.name IN (SELECT category_name FROM RecentSearches)
+                ORDER BY i.date_posted DESC
+                LIMIT 30
+            )
+            SELECT * FROM TrendingItems;
         `;
 
         // Execute the query

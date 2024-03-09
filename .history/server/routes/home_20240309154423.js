@@ -14,7 +14,7 @@ router.get('/home/trending', async (req, res) => {
         JOIN orders o ON od.order_id = o.order_id
         WHERE i.status != 'sold'
         GROUP BY i.item_id
-        ORDER BY order_count DESC -- Order by order frequency and recency
+        ORDER BY order_count DESC, o.created_at DESC -- Order by order frequency and recency
         LIMIT 10; -- Limit to top 10 trending items, adjust as necessary
         `;
 
@@ -28,35 +28,35 @@ router.get('/home/trending', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-router.get('/home/onlyforyou', async (req, res) => {
-    try {
-        // Assuming you want to find trending items based on categories
-        // that have been searched for in the last 30 days
-        const sqlQuery = `
-        SELECT i.item_id, i.name, i.price, i.image
-        FROM items i
-        INNER JOIN (
-            SELECT DISTINCT ON (sh.search_query) sh.search_query, sh.category_name
-            FROM search_history sh
-            WHERE sh.search_query IS NOT NULL
-            ORDER BY sh.search_query, sh.search_timestamp DESC
-        ) filtered_search ON i.name ILIKE '%' || filtered_search.search_query || '%'
-        OR i.category_id = (
-            SELECT c.category_id FROM categories c WHERE c.name ILIKE filtered_search.category_name
-        )
-        WHERE i.status != 'sold' -- Exclude items with status 'sold'
-        `;
+// router.get('/home/trending', async (req, res) => {
+//     try {
+//         // Assuming you want to find trending items based on categories
+//         // that have been searched for in the last 30 days
+//         const sqlQuery = `
+//         SELECT i.item_id, i.name, i.price, i.image
+//         FROM items i
+//         INNER JOIN (
+//             SELECT DISTINCT ON (sh.search_query) sh.search_query, sh.category_name
+//             FROM search_history sh
+//             WHERE sh.search_query IS NOT NULL
+//             ORDER BY sh.search_query, sh.search_timestamp DESC
+//         ) filtered_search ON i.name ILIKE '%' || filtered_search.search_query || '%'
+//         OR i.category_id = (
+//             SELECT c.category_id FROM categories c WHERE c.name ILIKE filtered_search.category_name
+//         )
+//         WHERE i.status != 'sold' -- Exclude items with status 'sold'
+//         `;
 
-        // Execute the query
-        const { rows } = await pool.query(sqlQuery);
+//         // Execute the query
+//         const { rows } = await pool.query(sqlQuery);
         
-        // Send back the query results
-        res.json(rows);
-    } catch (err) {
-        console.error('Error executing query', err.stack);
-        res.status(500).send('Server error');
-    }
-});
+//         // Send back the query results
+//         res.json(rows);
+//     } catch (err) {
+//         console.error('Error executing query', err.stack);
+//         res.status(500).send('Server error');
+//     }
+// });
 
 router.get('/home/top/:timeFrame', async (req, res) => {
     const timeFrame = req.params.timeFrame;
