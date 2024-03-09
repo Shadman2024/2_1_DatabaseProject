@@ -1,12 +1,8 @@
 .container{
     background-color: teal;
-    height: 320px;
+    height: 300px;
     display: flex;
     padding: 20px;
-}
-.container2{
-    background-color: teal;
-
 }
 .man{
     width: 100%;
@@ -48,5 +44,4 @@
     color: teal;;
     background-color: white;
     padding: 10px;
-    border-radius: 1rem 1rem 1rem 1rem;
 }

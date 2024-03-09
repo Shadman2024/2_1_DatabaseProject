@@ -1,0 +1,5 @@
+.container{
+    background-color: teal;
+    height: 300px;
+    display: flex;
+}

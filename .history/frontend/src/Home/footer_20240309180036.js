@@ -7,9 +7,7 @@ const footer = () => {
 
   return (
     <Fragment>
-      <div className={styles.container2}>
-        <div className={styles.title}> CSE216: Database Sessional Project</div>
-        <div className={styles.container}>
+      <div className={styles.container}>
         <div className={styles.man}>
           <div className={styles.maintitle}>MD MEHEDI HASAN MIM</div>
           <div className={styles.title}>
@@ -32,7 +30,6 @@ const footer = () => {
           <div className={styles.title}>Bangladesh University Of Engineering And Technology</div>
           <div className={styles.title}>Student Id: 2105124</div>
         </div>
-      </div>
       </div>
     </Fragment>
   );

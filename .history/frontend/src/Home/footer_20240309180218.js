@@ -8,7 +8,7 @@ const footer = () => {
   return (
     <Fragment>
       <div className={styles.container2}>
-        <div className={styles.title}> CSE216: Database Sessional Project</div>
+        <div> CSE216: Database Sessional Project</div>
         <div className={styles.container}>
         <div className={styles.man}>
           <div className={styles.maintitle}>MD MEHEDI HASAN MIM</div>
