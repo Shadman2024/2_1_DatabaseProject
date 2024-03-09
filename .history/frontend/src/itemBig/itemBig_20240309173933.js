@@ -84,7 +84,7 @@ const ItemBig = () => {
             fetchItemDetailsAndReviews();
     
             // Set up an interval to refresh the data automatically
-            const intervalId = setInterval(fetchItemDetailsAndReviews, 3); // Refresh every 30 seconds
+            const intervalId = setInterval(fetchItemDetailsAndReviews, 300); // Refresh every 30 seconds
     
             // Clear the interval when the component unmounts
             return () => clearInterval(intervalId);
