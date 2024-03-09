@@ -2,7 +2,6 @@ CREATE TYPE discount_type AS ENUM (
   'free shipping',
   'fixed amount discount',
   'percentage discount',
-  'buy x get y free',
   'guarantee ',
   'cashback'
 );
@@ -91,3 +90,23 @@ CREATE TRIGGER update_item_discounts_trigger
 AFTER INSERT ON discounts
 FOR EACH ROW
 EXECUTE FUNCTION update_item_discounts(); 
+
+
+CREATE OR REPLACE FUNCTION update_discount_ongoing_status()
+RETURNS TRIGGER AS
+$$
+BEGIN
+    IF NEW.start_date = CURRENT_DATE THEN
+        NEW.ongoing := true;
+    ELSIF NEW.start_date + NEW.duration_days * INTERVAL '1 DAY' + NEW.duration_hours * INTERVAL '1 HOUR' < CURRENT_DATE THEN
+        NEW.ongoing := false;
+    END IF;
+    RETURN NEW;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER update_discount_ongoing
+BEFORE INSERT OR UPDATE ON discounts
+FOR EACH ROW
+EXECUTE PROCEDURE update_discount_ongoing_status();
