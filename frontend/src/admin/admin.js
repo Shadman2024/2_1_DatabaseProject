@@ -95,15 +95,6 @@ const Admin = () => {
       </Fragment>
     );
   }
-  const showOptionsOrders = () => { 
-    window.location = "/orders";
-  };
-  const showOptionsusers = () => { 
-    window.location = "/users";
-  };
-  const showOptionsitems = () => {  
-    window.location = "/items";
-  };
 
   // Admin content to show if the correct password is entered
   return (
@@ -214,11 +205,7 @@ const Admin = () => {
             Submit
           </button>
         </form>
-        <div>
-          <button className={styles.animated_button} onClick={showOptionsOrders}>show orders</button>
-          <button className={styles.animated_button} onClick={showOptionsusers}>show users</button>
-          <button className={styles.animated_button} onClick={showOptionsitems}>show items</button>
-        </div>
+       
       </div>
     </Fragment>
   );
