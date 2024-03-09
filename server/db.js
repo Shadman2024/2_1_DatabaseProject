@@ -14,7 +14,7 @@ const pool = new Pool({
    password: "mim",
    host: "localhost",
    port: 5432,
-   database: "localhost"
+   database: "postgres"
 });
 
 pool.connect((err, client, release) => {
