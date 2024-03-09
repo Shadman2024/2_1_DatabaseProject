@@ -73,6 +73,8 @@ CREATE OR REPLACE FUNCTION update_item_discounts()
 RETURNS TRIGGER
 LANGUAGE plpgsql
 AS $$
+DECLARE
+    CAT_ID INT;
 BEGIN
     -- Insert new item_discounts records for eligible items
     FOR CAT_ID IN (SELECT DISTINCT category_id FROM items)
