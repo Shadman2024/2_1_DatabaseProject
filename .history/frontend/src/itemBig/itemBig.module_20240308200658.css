@@ -1,0 +1,204 @@
+.maincontainer {
+  /* background-color: rgb(255, 255, 255); */
+  /* display: flex; */
+  margin-left: 250px;
+  margin-right: 250px;
+}
+
+.container {
+  display: flex;
+}
+
+.container2 {
+  display: flex;
+}
+.containerleft {
+  color: rgb(32, 32, 32);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  width: 40%;
+  /* height: 800px; */
+  aspect-ratio: 1 / 1; 
+  margin: 10px;
+  padding: 1%;
+}
+
+
+.containermiddle {
+  /* background-color: black; */
+  color: rgb(32, 32, 32);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  width: 40%;
+  aspect-ratio: 1 / 1; 
+  /* height: 800px; */
+  margin: 10px;
+  padding: 1%;
+}
+
+.containerright {
+  color: rgb(32, 32, 32);
+  /* background-color: black; */
+  aspect-ratio: 1 / 1; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  width: 20%;
+  /* height: 800px; */
+  margin: 10px;
+  padding: 1%;
+}
+
+.container2left {
+  /* background-color: black; */
+  color: rgb(32, 32, 32);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  width: 70%;
+  /* height: 1200px; */
+  margin: 10px;
+  padding: 1%;
+  font-size: large;
+}
+
+.container2right {
+  color: rgb(32, 32, 32);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  width: 30%;
+  height: 1200px;
+  margin: 10px;
+  padding: 1%;
+  overflow-y: scroll;
+
+}
+.contItem{
+  display: flex; /* Enables Flexbox */
+  flex-direction: column; /* Aligns children vertically */
+  align-items: center; /* Centers children horizontally */
+  justify-content: flex-start; /* Align items to the start of the container */
+  gap: 20px; /* Adjust the gap size as needed */
+}
+
+.container2right::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+.seller_rating{
+  font-size: 50px;
+}
+
+
+.changebuttons{
+  position: absolute;
+  top: 67%;
+  left:22%;
+  gap: 10px;
+  display: flex;
+  /* padding-left: 35%; */
+  /* background-color: #ffffff; */
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.image {
+  width: 100%;
+  aspect-ratio:  1/1;
+}
+
+.animated_button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+  background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(0, 152, 155, 1) 0.1%, rgba(0, 94, 120, 1) 94.2%);
+  border-radius: 100px;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  box-shadow: 0 0 0 2px #ffffff00;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  text-align: center;
+  font-size: 1.2rem;
+  /* font-weight: bold; */
+  letter-spacing: 1px;
+  /* padding-bottom: 30px; */
+  margin-bottom: 10px;
+}
+
+.animated_button span:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: rgb(71, 0, 73);
+  /* color: #000; */
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.animated_button span:first-child {
+  position: relative;
+  z-index: 1;
+}
+
+.animated_button:hover {
+  box-shadow: 0 0 0 3px #ffffff;
+  color: #2F0332;
+}
+
+.animated_button:active {
+  scale: 0.95;
+}
+
+.animated_button:hover span:last-child {
+  width: 150px;
+  height: 150px;
+  opacity: 1;
+}
+.title {
+  /* Add styles for your title here */
+  margin-bottom: 10px;
+  /* Example space between title and wrapper */
+  font-size: 30px;
+  ;
+  color: rgb(255, 255, 255);
+  font-weight: bolder;
+  padding-left: 10px;
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+  margin-top: 0px;
+  /* letter-spacing: 5px; */
+}
+.itemrating {
+  font-size: 40px;
+  /* color: #ec9a00; */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* X-offset, Y-offset, blur radius, color */
+}
+.discounted_price{
+  font-size: 40px;
+}
+.old_price{
+  font-size: 25px;
+}
+/* itemBig.module.css or similar */
+.old_price {
+  color: #292929; /* Gray color for old price */
+  display: flex;
+}
+.lined {
+  text-decoration: line-through;
+  color: #757575;
+  margin-right: 8px; /* Optional: Adjust as needed */
+
+}
+.reviewsContainer{
+  /* background-color: white; */
+  /* margin-bottom: 3px; */
+  height: 500px;
+  overflow-y: scroll;
+}
+.review{
+  background-color: white;
+  margin-bottom: 3px;
+  border-radius: 1rem 1rem 1rem 1rem;
+}

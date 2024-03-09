@@ -3,17 +3,20 @@ const router = express.Router();
 const pool = require('../db');
 const authorization = require('../middleware/authorization');
 
+
 router.get('/', async (req, res) => {
     try {
         const discount = await pool.query(`SELECT unnest(enum_range(NULL::discount_type)) AS discount_type`);
  
         res.json(discount.rows);
 
+
     } catch (err) {
         console.error(err.message);
         res.status(500).json("server error");
     }
 });
+
 
 router.post('/', async (req, res) => {
     try {
@@ -33,6 +36,7 @@ router.post('/', async (req, res) => {
       res.status(500).json("server error");
     }
   });
+
 
 
 
