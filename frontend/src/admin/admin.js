@@ -17,9 +17,9 @@ const Admin = () => {
       try {
         const response = await fetch("http://localhost:5000/add_discount", {
           method: "GET",
-          headers: {
-            token: localStorage.token,
-          },
+          // headers: {
+          //   token: localStorage.token,
+          // },
         });
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -59,7 +59,7 @@ const Admin = () => {
           "Content-Type": "application/json",
           // Remove 'Content-Type' header when using FormData
           // Add any additional headers like authentication tokens here
-          token: localStorage.token,
+          //token: localStorage.token,
         },
         body: JSON.stringify(discountData),
       });
