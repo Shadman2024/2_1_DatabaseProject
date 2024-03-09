@@ -1,0 +1,64 @@
+.container{
+    display: flex;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-top: 40px;
+}
+.shipping{
+    background-color: #ba96db;
+    padding: 10px;
+    width: 50%;
+    margin: 10px;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+.payment{
+    background-color: #9acc9a;
+    padding: 10px;
+    width: 50%;
+    margin: 10px;
+    border-radius: 1rem 1rem 1rem 1rem;
+    margin-bottom: 10px;
+}
+.title {
+    font-size: 30px;;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,50%) 0.1%, rgba(0,94,120,50%) 94.2% );
+    margin-top: 0px;
+    /* background-color: #ba96db; */
+    letter-spacing: 5px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-radius: 0.5rem;
+    margin-bottom: 10px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+.checkoutForm {
+    display: flex;
+    flex-direction: column; 
+    /* gap: 10px;  */
+}
+input{
+    background-color: #ffffff;
+    border: 1px solid #9acc9a;
+    color: black;
+    height: 70px;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+input[type="text"] {
+    padding: 8px 15px; 
+    /* margin: 8px 0;  */
+    display: inline-block; 
+    /* border: 1px solid #ccc;  */
+    /* border-radius: 4px;  */
+    box-sizing: border-box; 
+    /* text-align: center; */
+    font-size: 25px;
+  }
+  input[type="text"]:focus {
+    border-color: #4CAF50; 
+    outline: none; 
+  }
+  

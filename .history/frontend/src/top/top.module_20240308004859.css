@@ -1,0 +1,122 @@
+.container{
+    display: flex;
+    /* background-color: blue; */
+}
+.topitem{
+    background-color: #ba96db;
+    padding: 10px;
+    width: 50%;
+    margin: 10px;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+.topseller{
+    background-color: #96addb;
+    /* background-color: black; */
+    padding: 10px;
+    width: 50%;
+    margin: 10px;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+.topdiscount{
+    background-color: #96db9d;
+    /* background-color: black; */
+    padding: 10px;
+    width: 50%;
+    margin: 10px;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+.title {
+    font-size: 30px;;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,50%) 0.1%, rgba(0,94,120,50%) 94.2% );
+    margin-top: 0px;
+    /* background-color: #ba96db; */
+    letter-spacing: 5px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-radius: 0.5rem;
+    padding: 10px;
+    text-align: center;
+    border-radius: 1rem 1rem 0rem 0rem;
+}
+.options{
+    display: flex;
+    background-color: rgba(0,152,155,50%);
+    /* height: 50px; */
+    border-radius: 0rem 0rem 1rem 1rem;
+}
+.optn{
+    width: 50%;
+    text-align: center;
+    font-size: 20px;;
+    font-weight: lighter;
+    cursor: pointer;
+    border-radius: 0rem 0rem 1rem 1rem;
+
+} 
+.active {
+    background-color: #85b9e4; 
+    color: rgb(255, 255, 255); 
+
+  }
+  
+.contentcontainer {
+    /* background-color: black; */
+    /* display: flex; */
+    height: 500px;
+    overflow-y: scroll;
+
+    /* Hide scrollbar for IE, Edge, and Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    /* Hide scrollbar for Chrome, Safari, and Opera */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.content{
+    background-color: rgb(251, 255, 255);
+    margin-top: 10px;
+    height: 100px;
+    width: 100%;
+    border-radius: 1rem 1rem 1rem 1rem;
+    display: flex;
+    padding: 5px;
+    gap:10px;
+    place-items: center;
+}
+.number,.image,.details{
+    color: black;
+    /* height: 100%; */
+}
+.number{
+    width: 15%;
+    text-align: center;
+    font-size: 30px;
+}
+.image{
+    width: 20%;
+    text-align: center;
+    /* color:darkcyan; */
+}
+.details{
+    width: 60%;
+    text-align: left;
+}
+.itemimage{
+    /* height:100%; */
+    width: 75%;
+}
+.name,.rating{
+    color: black;
+    font-size: 20px;
+    font-weight: lighter;
+}
+.ordered{
+    color: rgb(58, 58, 58);
+    font-size: 15px;
+    font-weight: lighter;
+}

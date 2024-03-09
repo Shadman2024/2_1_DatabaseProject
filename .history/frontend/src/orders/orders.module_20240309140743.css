@@ -1,0 +1,131 @@
+/* orders.module.css */
+.orders_container {
+  padding: 20px;
+  /* background: #f5f5f5; */
+  border-radius: 8px;
+  /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
+  margin-left: 250px;
+  margin-right: 250px;
+  margin-left: 250px;
+  margin-top: 40px;
+  margin-right: 250px;
+  padding: 20px;
+  /* background-color: #f9f9f9; */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  /* background-color: #97adda; */
+}
+
+.title {
+  font-size: 30px;;
+  color: rgb(255, 255, 255);
+  font-weight: bolder;
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,50%) 0.1%, rgba(0,94,120,50%) 94.2% );
+  margin-top: 0px;
+  /* background-color: #ba96db; */
+  letter-spacing: 5px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  border-radius: 0.5rem;
+  padding: 10px;
+  text-align: center;
+  border-radius: 1rem 1rem 1rem 1rem;
+  margin-bottom: 10px;
+}
+.statusSection{
+  background-color:#b894d9 ;
+  padding: 10px;
+  border-radius: 1rem 1rem 1rem 1rem;
+}
+.order {
+  /* background: #ffffff; */
+  padding: 15px;
+  margin-bottom: 20px;
+  /* border-radius: 8px; */
+  /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
+  font-size: 20px;
+  border-radius: 1rem 1rem 1rem 1rem;
+  background-color: white;
+}
+
+.order h3 {
+  color: #0275d8;
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.order p {
+  color: #313131;
+  margin: 5px 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 5px 0;
+  color: #363636;
+}
+
+strong {
+  color: #333;
+}
+
+/* Specific styles for shipping and payment sections */
+.order > div {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+/* Adjust the below properties as per your UI requirements */
+.orders_table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders_table th, .orders_table td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.orders_table th {
+  background-color: #f9f9f9;
+}
+.orders_table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
+.orders_table th, .orders_table td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.orders_table th {
+  background-color: teal;
+  /* color: #313131; */
+}
+.orders_table td {
+  background-color: #e0e0e0;
+  color: #313131;
+}
+.options{
+  width: 50%;
+  color: #313131;
+
+}
+
+.optioncontainer{
+  width: 50%;
+  text-align: center;
+  height: 70px;
+  border: 1px solid #11111100;
+  border-radius: 1rem 1rem 1rem 1rem;
+}

@@ -1,0 +1,106 @@
+.container{
+    display: flex;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-top: 40px;
+}
+.shipping{
+    background-color: #ba96db;
+    padding: 10px;
+    width: 50%;
+    margin: 10px;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+.payment{
+    background-color: #9acc9a;
+    padding: 10px;
+    width: 50%;
+    margin: 10px;
+    border-radius: 1rem 1rem 1rem 1rem;
+    margin-bottom: 10px;
+}
+.title {
+    font-size: 30px;;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,50%) 0.1%, rgba(0,94,120,50%) 94.2% );
+    margin-top: 0px;
+    /* background-color: #ba96db; */
+    letter-spacing: 5px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-radius: 0.5rem;
+    margin-bottom: 10px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+.checkoutForm {
+    display: flex;
+    flex-direction: column; 
+    /* gap: 10px;  */
+}
+input{
+    background-color: #ffffff;
+    border: 1px solid #9acc9a;
+    color: black;
+    height: 70px;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+input[type="text"] {
+    padding: 8px 15px; 
+    /* margin: 8px 0;  */
+    display: inline-block; 
+    /* border: 1px solid #ccc;  */
+    /* border-radius: 4px;  */
+    box-sizing: border-box; 
+    /* text-align: center; */
+    font-size: 25px;
+  }
+  input[type="text"]:focus {
+    border-color: #4CAF50; 
+    outline: none; 
+  }
+  
+
+  /* Styling for the select dropdown */
+.select-dropdown {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    -webkit-appearance: none; /* Removes default chrome and safari style */
+    -moz-appearance: none; /* Removes default style Firefox */
+    appearance: none; /* Removes default style for IE */
+  }
+  
+  /* To add a custom arrow, we use a background image on the select element */
+  .select-dropdown {
+    background-image: url('path_to_your_custom_arrow_image');
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Adjust based on your image and padding */
+    background-size: 12px; /* Size of your custom arrow */
+  }
+  
+  /* Focus state for better accessibility */
+  .select-dropdown:focus {
+    outline: none;
+    border-color: #4CAF50; /* Example focus color */
+  }
+  
+  /* Style for disabled select */
+  .select-dropdown:disabled {
+    background-color: #f3f3f3;
+    cursor: not-allowed;
+  }
+  
+  /* Example of how to target options - limited support */
+  .select-dropdown option {
+    padding: 10px; /* Padding for options - Not supported in all browsers */
+  }
+  
+  

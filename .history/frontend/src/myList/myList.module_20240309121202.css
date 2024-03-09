@@ -1,0 +1,169 @@
+/* Container for the entire list */
+.listContainer {
+    /* max-width: 600px; */
+    margin: 0 auto;
+    margin-left: 250px;
+    margin-right: 250px;
+    padding: 20px;
+    /* background-color: #f9f9f9; */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.image{
+    width: 100px;
+}
+.itemImage{
+    width: 150px;
+}
+.title {
+    /* Add styles for your title here */
+    margin-bottom: 10px;
+    /* Example space between title and wrapper */
+    font-size: 30px;
+    ;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    padding-left: 200px;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+    margin-top: 0px;
+    letter-spacing: 5px;
+  }
+.listContainer h2 {
+    text-align: center;
+    color: #333;
+}
+.details{
+    font-size: 20px;
+    color: #000000;
+}
+.text{
+    position:absolute;
+    left:700px;
+}
+.test{
+    display:flex;
+}
+.detailsContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 100px;
+}
+/* Styles for the list */
+.listContainer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.listContainer li {
+    background-color: rgba(0,152,155,.2);
+    /* border: 1px solid #ddd; */
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+
+.listContainer li:first-child {
+    margin-top: 0;
+}
+
+/* Style for item description */
+.item_description {
+    margin: 0;
+}
+.buttons{
+    position: fixed;
+    right: 300px;
+}
+/* Button styles */
+.button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.edit_button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.delete_button {
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-left: 10px;
+}
+
+/* No items listed message */
+.no_items {
+    text-align: center;
+    color: #666;
+}
+.animated_button {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    padding: 12px 24px;
+    border: none;
+    font-size: 16px;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+    border-radius: 100px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    box-shadow: 0 0 0 2px #ffffff00;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    text-align: center;
+    font-size: 1.2rem;
+    /* font-weight: bold; */
+    letter-spacing: 1px;
+    /* padding-bottom: 30px; */
+}
+
+.animated_button span:last-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% );
+    /* color: #000; */
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.animated_button span:first-child {
+    position: relative;
+    z-index: 1;
+}
+
+.animated_button:hover {
+    box-shadow: 0 0 0 3px #ffffff;
+    color: #2F0332;
+}
+
+.animated_button:active {
+    scale: 0.95;
+}
+
+.animated_button:hover span:last-child {
+    width: 150px;
+    height: 150px;
+    opacity: 1;
+}
+.text, .text input, .text select {
+    margin-left: 5px;
+    /* padding: 5px; */
+    /* border: 1px solid #ccc; */
+    border-radius: 5px;
+    background-color: #4CAF5000;
+    color: #000000;
+    width: 500px;
+}

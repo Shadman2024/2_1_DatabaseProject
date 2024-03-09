@@ -3,11 +3,13 @@ const router = express.Router();
 const pool = require('../db');
 const authorization = require('../middleware/authorization');
 
-router.get('/', async (req, res) => {
+
+router.get('/', authorization,async (req, res) => {
     try {
         const discount = await pool.query(`SELECT unnest(enum_range(NULL::discount_type)) AS discount_type`);
  
         res.json(discount.rows);
+
 
     } catch (err) {
         console.error(err.message);
@@ -15,7 +17,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', authorization, async (req, res) => {
     try {
       
       // Validate the start_date format
@@ -33,6 +35,7 @@ router.post('/', async (req, res) => {
       res.status(500).json("server error");
     }
   });
+
 
 
 

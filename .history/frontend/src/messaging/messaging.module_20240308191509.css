@@ -1,0 +1,271 @@
+.container {
+    display: flex;
+    margin-left: 250px;
+    margin-right: 250px;
+    height: 100vh;
+    /* Full height of the viewport */
+}
+
+.contactsList {
+    width: 300px;
+    border-right: 1px solid #ccc;
+    /* Separator line */
+    overflow-y: auto;
+    /* Enable scrolling if list is too long */
+    /* background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% ); */
+    background-color: rgba(0, 94, 120, 1);
+    /* Light grey background */
+    
+}
+
+.contact {
+    padding: 20px;
+    cursor: pointer;
+    /* Change cursor on hover */
+    border-bottom: 1px solid #eee;
+    /* Separator line */
+    transition: background-color 0.3s;
+    /* Smooth background color change on hover */
+}
+
+.contact:hover {
+    background-color: #e6e6e6;
+    /* Darker grey on hover */
+}
+
+
+
+.message {
+    margin: 10px 0;
+    padding: 15px;
+    background-color: #e6f7ff;
+    color: black;
+    /* Light blue background */
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Slight shadow */
+    width: fit-content;
+    /* Fit the content's width */
+    max-width: 80%;
+    /* Ensure messages don't stretch too wide */
+}
+
+/* Additional styling for sender differentiation */
+.message.owner {
+    background-color: #d1e7dd;
+    /* Different color for owner messages */
+    margin-left: auto;
+    /* Align owner messages to the right */
+}
+
+.message.customer {
+    background-color: #e6f7ff;
+    /* Different color for customer messages */
+}
+
+/* You might need to adjust the class names based on your actual implementation */
+/* .container {
+    display: flex;
+    height: 100vh;
+  }
+   */
+/* .contactsList {
+    width: 30%;
+    border-right: 1px solid #ccc;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+  } */
+
+.contact {
+    padding: 20px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.contact:hover {
+    background-color: #e6e6e6;
+}
+
+.conversation {
+    padding: 20px;
+    background-color: #fff;
+    width: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    height: 65%;
+    background-color: #97adda;
+    padding-left: 100px;
+    padding-right: 100px;
+    border-radius: 1rem 1rem 1rem 1rem;
+    padding-top: 100px;
+
+    /* Hide scrollbar for WebKit browsers */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for Firefox */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+/* Optional: for Firefox, if you want to hide the scrollbar but allow scrolling */
+.conversation {
+    scrollbar-width: none; /* Firefox */
+}
+
+/* For Internet Explorer and Edge */
+.conversation {
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+
+.message {
+    margin: 10px 0;
+    padding: 15px;
+    background-color: #e6f7ff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+    max-width: 80%;
+}
+
+.right {
+    background-color: #d1e7dd;
+    margin-left: auto;
+}
+
+.messageInput {
+    display: flex;
+    position: fixed;
+    bottom: 100px;
+    right: 300px;
+    padding-top: 10px;
+}
+
+.input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    color: black;
+    border-radius: 2rem;
+    background-color: #d1e7dd;
+    width: 1000px;
+}
+
+.sendButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sendButton:hover {
+    background-color: #0056b3;
+}
+
+.animated_button {
+    position: relative;
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    font-size: 16px;
+    background-color: inherit;
+    border-radius: 100px;
+    font-weight: 600;
+    color: #ffffff;
+    box-shadow: 0 0 0 2px #ffffff00;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    text-align: center;
+    font-size: 1.2rem;
+    /* font-weight: bold; */
+    letter-spacing: 1px;
+    /* padding-bottom: 30px; */
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% ); 
+}
+
+.animated_button span:last-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    /* color: #000; */
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.animated_button span:first-child {
+    position: relative;
+    z-index: 1;
+}
+
+.animated_button:hover {
+    box-shadow: 0 0 0 3px #ffffff;
+    color: #2F0332;
+}
+
+.animated_button:active {
+    scale: 0.95;
+}
+
+.animated_button:hover span:last-child {
+    width: 150px;
+    height: 150px;
+    opacity: 1;
+}
+.message {
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px 0;
+  max-width: 60%;
+}
+
+.left {
+  background-color: #f0f0f0; /* Light grey for customer */
+  align-self: flex-start;
+}
+
+.right {
+  background-color: #dcf8c6; /* Light green for seller */
+  align-self: flex-end;
+}
+
+
+.whitecontainer{
+    background-color: white;
+    width: 100%;
+    background-color: #97adda;
+    border-radius: 1rem 1rem 1rem 1rem;
+    margin: 10px;
+}
+
+.messageInput, .contactsList {
+  /* Styles as previously defined */
+}
+
+.input, .sendButton {
+  /* Styles as previously defined */
+}
+.message {
+    /* Existing styles */
+  }
+  
+  .left {
+    text-align: left;
+  }
+  
+  .right {
+    text-align: right;
+  }
+  
